@@ -1,4 +1,4 @@
-import { Header } from "../components/Header/Header";
+import { Header } from "../components/Header";
 import styles from "./MainLayout.module.scss";
 
 interface MainLayoutProps {
@@ -9,7 +9,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className={styles.wrapper}>
       <Header />
-      <div>{children}</div>
+      <>{children}</>
     </div>
   );
 };

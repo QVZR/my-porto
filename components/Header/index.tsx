@@ -1,18 +1,34 @@
 import { Login } from "@mui/icons-material";
 import { TextField } from "@mui/material";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from "./header.module.scss";
 
 export const Header: React.FC = () => {
+  const [active, setActive] = useState(false);
+
+  const onClickNav = () => {
+    setActive(true);
+  };
+
   return (
     <div className={styles.header}>
       <div className={styles.left}>
-        <div className={`${styles.nav} ${styles.navLeft} ${styles.delay3}`}>
-          <button>about me</button>
+        <div onClick={onClickNav} className={`${styles.nav} ${active && styles.active}`}>
+          <Link href="/">
+            <a>
+              <button>about me</button>
+            </a>
+          </Link>
         </div>
-        <div className={`${styles.nav} ${styles.navLeft} ${styles.delay2}`}>
-          <button>works</button>
+        <div className={`${styles.nav}`}>
+          <Link href="/works">
+            <a>
+              <button>works</button>
+            </a>
+          </Link>
         </div>
-        <div className={`${styles.nav} ${styles.navLeft} ${styles.delay1}`}>
+        <div className={`${styles.nav}`}>
           <button>blog</button>
         </div>
       </div>
@@ -22,7 +38,7 @@ export const Header: React.FC = () => {
         </div>
       </div>
       <div className={styles.right}>
-        <div className={`${styles.nav} ${styles.delay1} ${styles.navSearch}`}>
+        <div className={`${styles.nav} ${styles.navSearch}`}>
           <TextField
             placeholder="Search..."
             className={styles.search}
@@ -30,7 +46,7 @@ export const Header: React.FC = () => {
             variant="outlined"
           />
         </div>
-        <div className={`${styles.nav} ${styles.delay2}`}>
+        <div className={`${styles.nav}`}>
           <button>Contacts</button>
         </div>
         <Login className={styles.login} />
