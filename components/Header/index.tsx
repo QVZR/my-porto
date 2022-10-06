@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
         <div onClick={onClickNav} className={`${styles.nav} ${active && styles.active}`}>
           <Link href="/">
             <a>
-              <button>about me</button>
+              <button>about</button>
             </a>
           </Link>
         </div>

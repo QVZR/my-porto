@@ -1,11 +1,12 @@
 .header {
+	position: sticky;
   display: flex;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: -webkit-linear-gradient(171deg, rgba(18, 18, 18, 0.6), rgba(24, 24, 24, 0.6));
-  position: relative;
+
   height: 70px;
 }
 

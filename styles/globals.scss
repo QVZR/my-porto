@@ -3,10 +3,13 @@ body {
   font-family: "roboto", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   width: 100%;
-  height: 100vh;
-	overflow-x: hidden;
+  height: 100%;
 }
+body {
+  background: url("../public/img/BG-main.jpeg");
+  background-size: cover;
 
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -17,6 +20,19 @@ a {
   padding: 0;
   margin: 0;
   list-style: none;
+  &::-webkit-scrollbar {
+    width: 7px;
+    // display: none;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #666;
+  }
 }
 button {
   border: 0;
@@ -26,9 +42,6 @@ button {
 
 .wrapper {
   height: 100%;
-  background-image: url("../public/img/BG-main.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 #__next {

@@ -1,0 +1,118 @@
+{
+  "frontend": [
+    {
+      "img": "/img/softSkilsLogo/html-5.svg",
+      "name": "HTML-5",
+      "url": "http://htmlbook.ru/html5"
+    },
+
+    {
+      "img": "/img/softSkilsLogo/css.svg",
+      "name": "CSS-3",
+      "url": "http://htmlbook.ru/css3"
+    },
+    {
+      "img": "/img/softSkilsLogo/sass.svg",
+      "name": "SASS",
+      "url": "https://sass-scss.ru/"
+    },
+    {
+      "img": "/img/softSkilsLogo/javascript.svg",
+      "name": "JavaScript",
+      "url": "https://developer.mozilla.org/ru/docs/Web/JavaScript"
+    },
+    {
+      "img": "/img/softSkilsLogo/typescript.svg",
+      "name": "TypeScript",
+      "url": "https://www.typescriptlang.org/"
+    },
+    {
+      "img": "/img/softSkilsLogo/react.svg",
+      "name": "ReactJS",
+      "url": "https://reactjs.org/"
+    },
+    {
+      "img": "/img/softSkilsLogo/nextjs.svg",
+      "name": "NextJS",
+      "url": "https://nextjs.org/"
+    },
+    {
+      "img": "/img/softSkilsLogo/redux.svg",
+      "name": "Redux Toolkit",
+      "url": "https://redux-toolkit.js.org/"
+    },
+    {
+      "img": "/img/softSkilsLogo/material-ui.svg",
+      "name": "MUI",
+      "url": "https://mui.com/"
+    }
+  ],
+
+  "backend": [
+    {
+      "img": "/img/softSkilsLogo/nodejs.svg",
+      "name": "NodeJS",
+      "url": "https://nodejs.org/en/"
+    },
+    {
+      "img": "/img/softSkilsLogo/express-js.svg",
+      "name": "ExpressJS",
+      "url": "https://expressjs.com/"
+    },
+    {
+      "img": "/img/softSkilsLogo/nestjs.svg",
+      "name": "NestJs",
+      "url": "https://nestjs.com/"
+    },
+    {
+      "img": "/img/softSkilsLogo/json-48.png",
+      "name": "JSON",
+      "url": "https://developer.mozilla.org/ru/docs/Learn/JavaScript/Objects/JSON"
+    },
+    {
+      "img": "/img/softSkilsLogo/postgresql.svg",
+      "name": "PostgreSQL",
+      "url": "https://www.postgresql.org/"
+    },
+    {
+      "img": "/img/softSkilsLogo/mongodb.svg",
+      "name": "MongoDB",
+      "url": "https://www.mongodb.com/"
+    },
+    {
+      "img": "/img/softSkilsLogo/mockApi.png",
+      "name": "MockApi",
+      "url": "https://mockapi.io/"
+    },
+    {
+      "img": "/img/softSkilsLogo/npm.svg",
+      "name": "NPM",
+      "url": "https://www.npmjs.com/"
+    },
+    {
+      "img": "/img/softSkilsLogo/yarn-logo.svg",
+      "name": "Yarn",
+      "url": "https://yarnpkg.com/"
+    },
+    {
+      "img": "/img/softSkilsLogo/axios.svg",
+      "name": "Axios",
+      "url": "https://axios-http.com/ru/"
+    },
+    {
+      "img": "/img/softSkilsLogo/json-web-token.svg",
+      "name": "JWT",
+      "url": "https://jwt.io/"
+    },
+    {
+      "img": "/img/softSkilsLogo/git.svg",
+      "name": "Git",
+      "url": "https://git-scm.com/"
+    },
+    {
+      "img": "/img/softSkilsLogo/github.svg",
+      "name": "GitHub",
+      "url": "https://github.com/"
+    }
+  ]
+}
