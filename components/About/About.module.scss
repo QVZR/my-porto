@@ -31,11 +31,10 @@
   flex-direction: column;
   flex: 0.6;
   width: 100%;
-
 }
 .transcription {
   width: 100%;
-    background: $bgPaper;
+  background: $bgHeader;
   padding: 20px;
   // overflow: auto;
   span {
@@ -53,7 +52,7 @@
 }
 .hardSkils {
   height: 80px;
-  background: $bgPaper;
+  background: $bgHeader;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -63,10 +62,9 @@
   width: 100%;
 }
 .aboutMe {
-
   width: 100%;
   flex: 0.5;
-  background: $bgPaper;
+  background: $bgHeader;
   padding: 20px;
   &:first-child {
     margin-bottom: 10px;

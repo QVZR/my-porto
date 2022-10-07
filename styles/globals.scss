@@ -6,9 +6,8 @@ body {
   height: 100%;
 }
 body {
-  background: url("../public/img/BG-main.jpeg");
+  background: #0a1929;
   background-size: cover;
-
 }
 a {
   color: inherit;
@@ -16,6 +15,7 @@ a {
 }
 
 * {
+  color: #C3D1D9;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -31,7 +31,7 @@ a {
     background: #fff;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #666;
+    background-color: #182a3a;
   }
 }
 button {

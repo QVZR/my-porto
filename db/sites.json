@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Sneakers",
+    "img": "img/worksImg/sneakers.png",
+    "desc": {
+      "title": "This is the website of a small sneaker store Sneakers:",
+      "ucan": [
+        "add and remove products to favorites",
+        "add and remove items to the cart",
+        "place product orders",
+        "view the shopping list",
+        "search by product name"
+      ],
+      "used": [
+        "React JS v18",
+        "Hooks (useState,useEffect...)",
+        "Context, useContext",
+        "React Router v6",
+        "MockApi.io for database",
+        "Axios",
+        "Sceleton preload",
+        "Scss module etc"
+      ]
+    },
+    "url": "https://vithvo.github.io/Sneakers/"
+  },
+  {
+    "name": "PizzaHot",
+    "img": "img/worksImg/pizza.png",
+    "desc": {
+      "title": "This is the website of a small pizza store PizzaHot",
+      "ucan": [
+        "add and remove items to the cart",
+        "search by product name",
+        "sorting pizzas by types, prices, rating, alphabet",
+        "the website uses MockApi.io for the database. All changes are saved there"
+      ],
+      "used": [
+        "TypeScript",
+        "React JS v18 and Redux Toolkit",
+        "React Router v6",
+        "MockApi.io for database",
+        "ThunkApi and Axios",
+        "Sceleton preload",
+        "Code spliting via React.lazy",
+        "Reexport and Barrel Export",
+        "Item data save in to the local storage"
+      ]
+    },
+    "url": "https://vithvo.github.io/PizzaHot/"
+  },
+  {
+    "name": "ToDoApp",
+    "img": "img/worksImg/todoApp.png",
+    "desc": {
+      "title": "This is the web aplication ToDoApp",
+      "ucan": [
+        "add and remove lists of tasks",
+        "add and remove tasks",
+        "choose the color of task sheets",
+        "edit tasks",
+        "view all tasks"
+      ],
+      "used": [
+        "JavaScript",
+        "React JS v18",
+        "Hooks (useState,useEffect...)",
+        "React Router v6",
+        "RestApi and Axios",
+        "Fake-json server for database"
+      ]
+    },
+    "url": ""
+  },
+  {
+    "name": "CJournal",
+    "img": "",
+    "desc": {
+      "title": "Let's honor the memory of the well-known news site TJournal in Russia by poking buttons in its modest copy CJournal",
+      "ucan": [
+        "for comfortable use, you must auth to the site (u can use any name, password and email)",
+        "create and edit your posts",
+        "added comments to the your and other posts",
+        "edit and delete your comments",
+        "searching posts by title"
+      ],
+      "used": [
+        "NextJS",
+        "Redux Toolkit",
+        "Mui, EditorJs",
+        "Axios, yup",
+        "Scss module",
+        "NestJS",
+        "PostgreSQL",
+        "Pasport-JWT"
+      ]
+    },
+    "url": ""
+  }
+]

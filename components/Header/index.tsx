@@ -47,7 +47,11 @@ export const Header: React.FC = () => {
           />
         </div>
         <div className={`${styles.nav}`}>
-          <button>Contacts</button>
+          <Link href="/contacts">
+            <a>
+              <button>Contacts</button>
+            </a>
+          </Link>
         </div>
         <Login className={styles.login} />
       </div>
