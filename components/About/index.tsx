@@ -77,7 +77,7 @@ export const About: React.FC = () => {
             </Typography>
             <ul>
               {skils.backend.map((item, i) => (
-                <a key={1} href={item.url} target="_blank">
+                <a key={i} href={item.url} target="_blank">
                   <li>
                     <img src={item.img} alt={item.name} />
                     {item.name}

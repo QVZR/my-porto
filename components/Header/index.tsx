@@ -1,20 +1,20 @@
 import { Login } from "@mui/icons-material";
 import { TextField } from "@mui/material";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./header.module.scss";
-
+import { useRouter } from "next/router";
 export const Header: React.FC = () => {
-  const [active, setActive] = useState(false);
-
-  const onClickNav = () => {
-    setActive(true);
+  const onClickNav = (e: any) => {
   };
+  const router = useRouter();
+
+  // console.log(router.asPath);
 
   return (
     <div className={styles.header}>
       <div className={styles.left}>
-        <div onClick={onClickNav} className={`${styles.nav} ${active && styles.active}`}>
+        <div onClick={onClickNav} className={`${styles.nav}`}>
           <Link href="/">
             <a>
               <button>about</button>

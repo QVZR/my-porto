@@ -3,7 +3,14 @@ import { NextPage } from "next";
 import { MainLayout } from "../../layouts/MainLayout";
 import styles from "./Contacts.module.scss";
 import { IMaskInput } from "react-imask";
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useRef, MutableRefObject } from "react";
+import Swal from "sweetalert2";
+
+import emailjs from "emailjs-com";
+
+const SERVICE_ID = "service_cif9ujv";
+const TEMPLATE_ID = "template_1vu3d4l";
+const USER_ID = "VOupS7cPYKCyAbMyK";
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -15,11 +22,6 @@ interface State {
 }
 
 const TextMaskCustom = forwardRef<HTMLElement, CustomProps>(function TextMaskCustom(props, ref) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [text, setText] = useState("");
-
   const { onChange, ...other } = props;
   return (
     <IMaskInput
@@ -35,38 +37,54 @@ const TextMaskCustom = forwardRef<HTMLElement, CustomProps>(function TextMaskCus
   );
 });
 const Contacts: NextPage = () => {
-  const [values, setValues] = React.useState<State>({
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [text, setText] = useState("");
+  const [phone, setPhone] = useState<State>({
     textmask: "",
   });
+  const [loading, setLoading] = useState(false);
+
+  const form: MutableRefObject<HTMLFormElement | string> = useRef("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({
-      ...values,
+    setPhone({
+      ...phone,
       [event.target.name]: event.target.value,
     });
   };
 
   // ===========================================================================
-  // const onSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   let formData = new FormData();
-
-  //   formData.append("name", name);
-  //   formData.append("email", email);
-  //   formData.append("email", phone);
-  //   formData.append("text", text);
-  //   fetch("send.php", {
-  //     method: "POST",
-  //     body: formData,
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   }).then((response) => {
-  //     response.json().then((data) => {
-  //       console.log("Successful" + data);
-  //     });
-  //   });
-  // };
+  const submitForm = (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, USER_ID).then(
+      (result) => {
+        console.log(result.text);
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent Successfully",
+        });
+        setLoading(false);
+      },
+      (error) => {
+        console.log(error.text);
+        Swal.fire({
+          icon: "error",
+          title: "Ooops, something went wrong",
+          text: error.text,
+        });
+        setLoading(false);
+      }
+    );
+    e.target.reset();
+    setName("");
+    setText("");
+    setPhone({
+      textmask: "",
+    });
+    setEmail("");
+  };
 
   // ==========================================================================
 
@@ -112,7 +130,12 @@ const Contacts: NextPage = () => {
 
               <div className={styles.infoMail}>
                 <Typography variant="h5">Email me:</Typography>
-                <form encType="multipart/form-data" method="post" id="form">
+                <form
+                  ref={form as MutableRefObject<HTMLFormElement>}
+                  method="post"
+                  id="form"
+                  onSubmit={submitForm}
+                >
                   <div className={styles.formItem}>
                     <div className={styles.formLeft}>
                       <TextField
@@ -121,6 +144,9 @@ const Contacts: NextPage = () => {
                         id="outlined-basic"
                         variant="outlined"
                         fullWidth
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                        name="user_name"
                       />
                       <TextField
                         placeholder="Your email"
@@ -129,20 +155,23 @@ const Contacts: NextPage = () => {
                         id="outlined-basic"
                         variant="outlined"
                         fullWidth
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        name="user_email"
                       />
                       <TextField
                         placeholder="Your phone number"
                         className={styles.mail}
                         type="tel"
-                        value={values.textmask}
+                        value={phone.textmask}
                         onChange={handleChange}
-                        name="textmask"
                         id="formatted-text-mask-input"
                         variant="outlined"
                         fullWidth
                         InputProps={{
                           inputComponent: TextMaskCustom as any,
                         }}
+                        name="textmask"
                       />
                     </div>
                     <div className={styles.formRight}>
@@ -155,10 +184,15 @@ const Contacts: NextPage = () => {
                         rows={5}
                         multiline
                         fullWidth
+                        onChange={(e) => setText(e.target.value)}
+                        value={text}
+                        name="message"
                       />
                     </div>
                   </div>
-                  <button>Send</button>
+                  <button disabled={loading} type="submit">
+                    Send
+                  </button>
                 </form>
               </div>
             </div>

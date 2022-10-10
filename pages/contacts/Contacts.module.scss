@@ -69,6 +69,11 @@
     &:hover {
       background-color: rgba(227, 50, 65, 1);
     }
+
+    &:disabled {
+      background-color: #acc3d7ee;
+      cursor: wait;
+    }
   }
 }
 
@@ -109,8 +114,4 @@
       border: 2px solid #fff !important;
     }
   }
-}
-
-.css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root {
-  padding: 8px !important;
 }
