@@ -2,8 +2,74 @@ import { Paper, TextField, Typography } from "@mui/material";
 import { NextPage } from "next";
 import { MainLayout } from "../../layouts/MainLayout";
 import styles from "./Contacts.module.scss";
+import { IMaskInput } from "react-imask";
+import React, { forwardRef, useState } from "react";
 
+interface CustomProps {
+  onChange: (event: { target: { name: string; value: string } }) => void;
+  name: string;
+}
+
+interface State {
+  textmask: string;
+}
+
+const TextMaskCustom = forwardRef<HTMLElement, CustomProps>(function TextMaskCustom(props, ref) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [text, setText] = useState("");
+
+  const { onChange, ...other } = props;
+  return (
+    <IMaskInput
+      {...other}
+      mask="# (000) 000-0000"
+      definitions={{
+        "#": /[1-9]/,
+      }}
+      // inputRef={ref}
+      onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
+      overwrite
+    />
+  );
+});
 const Contacts: NextPage = () => {
+  const [values, setValues] = React.useState<State>({
+    textmask: "",
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  // ===========================================================================
+  // const onSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   let formData = new FormData();
+
+  //   formData.append("name", name);
+  //   formData.append("email", email);
+  //   formData.append("email", phone);
+  //   formData.append("text", text);
+  //   fetch("send.php", {
+  //     method: "POST",
+  //     body: formData,
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   }).then((response) => {
+  //     response.json().then((data) => {
+  //       console.log("Successful" + data);
+  //     });
+  //   });
+  // };
+
+  // ==========================================================================
+
   return (
     <MainLayout>
       <div className={styles.wrapper}>
@@ -46,7 +112,7 @@ const Contacts: NextPage = () => {
 
               <div className={styles.infoMail}>
                 <Typography variant="h5">Email me:</Typography>
-                <form action="mailto:vithvowork@gmail.com" encType="text/plain">
+                <form encType="multipart/form-data" method="post" id="form">
                   <div className={styles.formItem}>
                     <div className={styles.formLeft}>
                       <TextField
@@ -58,6 +124,7 @@ const Contacts: NextPage = () => {
                       />
                       <TextField
                         placeholder="Your email"
+                        type="email"
                         className={styles.mail}
                         id="outlined-basic"
                         variant="outlined"
@@ -66,9 +133,16 @@ const Contacts: NextPage = () => {
                       <TextField
                         placeholder="Your phone number"
                         className={styles.mail}
-                        id="outlined-basic"
+                        type="tel"
+                        value={values.textmask}
+                        onChange={handleChange}
+                        name="textmask"
+                        id="formatted-text-mask-input"
                         variant="outlined"
                         fullWidth
+                        InputProps={{
+                          inputComponent: TextMaskCustom as any,
+                        }}
                       />
                     </div>
                     <div className={styles.formRight}>
