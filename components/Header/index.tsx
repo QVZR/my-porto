@@ -1,36 +1,45 @@
 import { Login } from "@mui/icons-material";
 import { TextField } from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
+
 import styles from "./header.module.scss";
 import { useRouter } from "next/router";
-export const Header: React.FC = () => {
-  const onClickNav = (e: any) => {
-  };
-  const router = useRouter();
+import { useState } from "react";
+import { AuthDialog } from "../AuthDialog";
 
-  // console.log(router.asPath);
+const menu = [
+  { text: "about", path: "/" },
+  { text: "works", path: "/works" },
+  { text: "blog", path: "/blog" },
+  { text: "Contacts", path: "/contacts" },
+];
+
+export const Header: React.FC = () => {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={styles.header}>
       <div className={styles.left}>
-        <div onClick={onClickNav} className={`${styles.nav}`}>
-          <Link href="/">
-            <a>
-              <button>about</button>
-            </a>
-          </Link>
-        </div>
-        <div className={`${styles.nav}`}>
-          <Link href="/works">
-            <a>
-              <button>works</button>
-            </a>
-          </Link>
-        </div>
-        <div className={`${styles.nav}`}>
-          <button>blog</button>
-        </div>
+        {menu.slice(0, 3).map((obj, i) => (
+          <div
+            key={i}
+            className={obj.path === router.asPath ? `${styles.active} ${styles.nav}` : styles.nav}
+          >
+            <Link href={obj.path}>
+              <a>
+                <button>{obj.text}</button>
+              </a>
+            </Link>
+          </div>
+        ))}
       </div>
       <div className={styles.center}>
         <div className={styles.logo}>
@@ -46,14 +55,20 @@ export const Header: React.FC = () => {
             variant="outlined"
           />
         </div>
-        <div className={`${styles.nav}`}>
-          <Link href="/contacts">
-            <a>
-              <button>Contacts</button>
-            </a>
-          </Link>
-        </div>
-        <Login className={styles.login} />
+        {menu.slice(3, 4).map((obj, i) => (
+          <div
+            key={i}
+            className={obj.path === router.asPath ? `${styles.active} ${styles.nav}` : styles.nav}
+          >
+            <Link href={obj.path}>
+              <a>
+                <button>{obj.text}</button>
+              </a>
+            </Link>
+          </div>
+        ))}
+        <Login onClick={handleClickOpen} className={styles.login} />
+        <AuthDialog onClose={handleClose} open={open} />
       </div>
     </div>
   );

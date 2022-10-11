@@ -80,7 +80,15 @@
     font-family: inherit;
     font-weight: 100;
     align-items: center;
-    color: #C3D1D9;
+    color: #c3d1d9;
+  }
+}
+
+.active {
+  background-color: rgba(227, 50, 65, 1);
+  &:after {
+    width: 100%;
+    left: 0;
   }
 }
 
