@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
       </div>
       <div className={styles.center}>
         <div className={styles.logo}>
-          <img src="img/logo.svg" alt="Logo" />
+          <img src="/img/logo.svg" alt="Logo" />
         </div>
       </div>
       <div className={styles.right}>

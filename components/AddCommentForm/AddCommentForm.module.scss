@@ -1,0 +1,47 @@
+.form {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.textarea {
+  cursor: default;
+  display: flex;
+  margin: 20px auto;
+  width: 100%;
+  font-size: inherit;
+  background-color: #f7f7f7;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 12px 11px 11px;
+  border-radius: 10px;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #fff;
+    border-color: #bdd6fa;
+    box-shadow: 0 0 0 3px rgb(70 131 217 / 12%) !important;
+    padding: 12px 11px 11px;
+  }
+
+  &::after,
+  &::before {
+    display: none;
+  }
+}
+
+.button {
+  background-color: #4683d9;
+  color: #fff;
+  min-width: 113px;
+
+  font-size: 16px;
+  position: absolute;
+  right: 15px;
+  bottom: 12px;
+
+  &:hover {
+    background-color: #4683d9;
+  }
+}
+
+
