@@ -1,0 +1,49 @@
+html,
+body {
+  font-family: "roboto", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  width: 100%;
+  height: 100%;
+}
+body {
+  background: #0a1929;
+  background-size: cover;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  color: #C3D1D9;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  &::-webkit-scrollbar {
+    width: 7px;
+    // display: none;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #182a3a;
+  }
+}
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}

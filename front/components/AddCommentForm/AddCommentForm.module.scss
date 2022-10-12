@@ -1,0 +1,60 @@
+.form {
+  position: relative;
+  margin-bottom: 22px !important;
+  height: 100%;
+}
+
+.textarea {
+  cursor: default;
+  display: flex;
+  margin: 20px auto;
+  width: 100%;
+  font-size: inherit;
+  background-color: #f7f7f7;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 12px 11px 11px;
+  border-radius: 10px;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #fff;
+    border-color: #bdd6fa;
+    box-shadow: 0 0 0 3px rgb(70 131 217 / 12%) !important;
+    padding: 12px 11px 11px;
+  }
+
+  &::after,
+  &::before {
+    display: none;
+  }
+}
+
+.button {
+  background-color: #182a3a;
+
+  padding: 10px 20px;
+
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 2px;
+
+  color: #c3d1d9 !important;
+  align-items: center;
+  &:hover {
+    background-color: rgba(227, 50, 65, 1);
+  }
+
+  &:disabled {
+    background-color: #acc3d7ee;
+    cursor: wait;
+  }
+
+  svg {
+    fill: #c3d1d9;
+    margin-right: 7px;
+  }
+  position: absolute;
+  right: 15px;
+  bottom: 12px;
+}

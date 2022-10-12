@@ -1,0 +1,118 @@
+@import "../../styles/colors.scss";
+.wrapper {
+  margin-top: -100px;
+  padding-top: 100px;
+padding-bottom: 10px;
+}
+
+.contacts {
+  margin: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  background: $bgHeader;
+  color: #c3d1d9;
+}
+
+.map {
+  width: 100%;
+  padding: 30px;
+
+  iframe {
+    width: 100%;
+  }
+}
+
+.info {
+  margin-top: 30px;
+  display: flex;
+  a {
+    color: blue;
+    letter-spacing: 1px;
+    border-bottom: 2px blue solid;
+  }
+}
+
+.infoText {
+  flex: 35%;
+  h5 {
+    margin-bottom: 15px;
+  }
+}
+.adress {
+  margin-bottom: 40px;
+}
+.social {
+  li {
+    margin-bottom: 10px;
+  }
+}
+
+.infoMail {
+  flex: 65%;
+  width: 100%;
+  h5 {
+    margin-bottom: 15px;
+  }
+  form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  button {
+    background-color: #182a3a;
+    width: 100%;
+    padding: 8px;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 2px;
+    &:hover {
+      background-color: rgba(227, 50, 65, 1);
+    }
+
+    &:disabled {
+      background-color: #acc3d7ee;
+      cursor: wait;
+    }
+  }
+}
+
+.formItem {
+  display: flex;
+}
+
+.formLeft {
+  flex: 35%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+.formRight {
+  flex: 65%;
+}
+.mail {
+  border-radius: 0;
+  background-color: rgb(255, 255, 255, 0.7) !important;
+  margin-bottom: 15px;
+  input {
+    padding: 8px !important;
+  }
+
+  fieldset {
+    border-radius: 0 !important;
+  }
+  &:hover {
+    background-color: #fff !important;
+
+    fieldset {
+      border: 2px solid #fff !important;
+    }
+  }
+  &:focus-within {
+    background-color: #fff !important;
+    fieldset {
+      border: 2px solid #fff !important;
+    }
+  }
+}

@@ -1,0 +1,163 @@
+.header {
+  display: flex;
+  width: 100%;
+  top: 0;
+  align-items: center;
+  justify-content: space-between;
+  background: -webkit-linear-gradient(171deg, rgba(18, 18, 18), rgba(24, 24, 24));
+  border-bottom: 1px solid #182a3a;
+  height: 70px;
+  position: sticky;
+  z-index: 1000;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  display: flex;
+  height: 55px;
+  width: 330px;
+  border-radius: 3px;
+  opacity: 0.7;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.left {
+  width: 35%;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.right {
+  width: 35%;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav {
+  position: relative;
+  height: 35px;
+  width: 110px;
+  background-color: #182a3a;
+  text-align: center;
+  border-radius: 3px;
+  // transform: translateX(-200%);
+  // opacity: 0;
+  // animation: start 0.3s ease-in-out forwards;
+  transition: all 0.15s ease-in-out;
+  &:hover {
+    background-color: rgba(227, 50, 65, 1);
+    &:after {
+      width: 100%;
+      left: 0;
+    }
+  }
+  &:after {
+    content: "";
+    height: 2px;
+    width: 0;
+    background-color: rgba(227, 50, 65, 0.6);
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transition: all 0.2s ease-in-out;
+  }
+  button {
+    line-height: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    height: 100%;
+    width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 100;
+    align-items: center;
+    color: #c3d1d9;
+  }
+}
+
+.active {
+  background-color: rgba(227, 50, 65, 1);
+  &:after {
+    width: 100%;
+    left: 0;
+  }
+}
+
+// .active {
+//   background-color: rgba(227, 50, 65, 1);
+//   &:after {
+//     width: 100%;
+//     left: 0;
+//   }
+// }
+
+// .navLeft {
+//   transform: translateX(200%);
+// }
+
+// .delay1 {
+//   animation-delay: 0.3s;
+// }
+// .delay2 {
+//   animation-delay: 0.6s;
+// }
+// .delay3 {
+//   animation-delay: 0.9s;
+// }
+
+.navSearch {
+  background-color: rgba(100, 105, 113, 0.6);
+  width: 250px;
+  border-radius: 5px;
+  &:after {
+    display: none;
+  }
+  &:hover {
+    background-color: rgba(100, 105, 113, 0.6);
+
+    fieldset {
+      border: 2px solid rgba(227, 50, 65, 0.6) !important;
+    }
+  }
+  &:focus-within {
+    background-color: rgba(255, 255, 255, 0.6);
+    fieldset {
+      border: 2px solid rgba(0, 0, 0, 0.6) !important;
+    }
+  }
+}
+
+.search {
+  width: 100%;
+  input {
+    height: 35px !important;
+    padding: 0 10px;
+  }
+  label {
+    display: none;
+  }
+}
+
+.login {
+  font-size: 30px;
+  cursor: pointer;
+  &:hover {
+    fill: rgba(227, 50, 65);
+  }
+}
+
+// @keyframes start {
+//   100% {
+//     transform: translateX(0%);
+//     opacity: 1;
+//   }
+// }

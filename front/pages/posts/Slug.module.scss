@@ -1,0 +1,34 @@
+.slugRow {
+  max-width: 640px;
+  width: 100%;
+
+  margin: 25px auto;
+
+	margin-bottom: 30px !important;
+}
+.headerPenButton {
+  background-color: #182a3a;
+  position: fixed;
+  padding: 10px;
+  padding-right: 20px;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 2px;
+  top: 90px;
+  left: 20px;
+  color: #c3d1d9 !important;
+	align-items: center;
+  &:hover {
+    background-color: rgba(227, 50, 65, 1);
+  }
+
+  &:disabled {
+    background-color: #acc3d7ee;
+    cursor: wait;
+  }
+
+  svg {
+    fill: #c3d1d9;
+    margin-right: 7px;
+  }
+}

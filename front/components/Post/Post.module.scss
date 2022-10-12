@@ -1,0 +1,80 @@
+.post {
+  max-width: 640px;
+  width: 100%;
+  margin: 25px auto;
+  position: relative;
+}
+
+.postImageRow {
+  position: relative;
+  margin: 0 -25px;
+}
+
+.postImage {
+  position: absolute;
+}
+
+.title {
+  font-weight: 500 !important;
+  letter-spacing: -0.1px !important;
+  font-size: 22px;
+  cursor: pointer;
+  color: #000 !important;
+}
+
+.text {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #000 !important;
+}
+
+.paper {
+  border-radius: 8px;
+}
+
+.postFooter {
+  width: 100%;
+  ul {
+    margin-top: 10px;
+  }
+  li {
+    display: flex;
+    align-items: center;
+
+    font-size: 15px;
+    button {
+      padding: 0;
+    }
+    svg {
+      height: 21px;
+      width: 21px;
+      margin-right: 5px;
+      fill: #595959;
+      path {
+        fill: #595959;
+      }
+    }
+
+    p {
+      margin: 0;
+     
+      position: relative;
+      color: #000 !important;
+
+    }
+    svg {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
+}
+
+.postInner {
+  padding: 20px;
+}
+
+.postFooterInner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
