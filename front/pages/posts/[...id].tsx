@@ -1,6 +1,7 @@
 import { ArrowBackOutlined } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { GetServerSideProps, NextPage } from "next";
+import { ApiError } from "next/dist/server/api-utils";
 import Link from "next/link";
 import React from "react";
 
@@ -8,14 +9,14 @@ import { FullPost } from "../../components/FullPost";
 import { PostComments } from "../../components/PostComments";
 
 import { MainLayout } from "../../layouts/MainLayout";
-// import { Api } from "../../utils/api";
-// import { PostProps } from "../../utils/api/types";
+import { Api } from "../../utils/api";
+import { PostProps } from "../../utils/api/types";
 
 import styles from "./Slug.module.scss";
 
-// interface SlugProps {
-//   post: PostProps;
-// }
+interface SlugProps {
+  post: PostProps;
+}
 
 const Slug: NextPage = ({}) => {
   return (
@@ -36,25 +37,24 @@ const Slug: NextPage = ({}) => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//   try {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  try {
+    const id = ctx.params?.id;
+    const post = await Api(ctx).post.getOne(+(id as string));
 
-//     const id = ctx.params?.id;
-//     const post = await Api(ctx).post.getOne(+(id as string));
-
-//     return {
-//       props: { post },
-//     };
-//   } catch (error) {
-//     console.log("Full post page", error);
-//     return {
-//       props: {},
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
-// };
+    return {
+      props: { post },
+    };
+  } catch (error) {
+    console.log("Full post page", error);
+    return {
+      props: {},
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+};
 
 export default Slug;

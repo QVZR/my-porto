@@ -1,11 +1,15 @@
 import { Login } from "@mui/icons-material";
-import { TextField } from "@mui/material";
+import { Avatar, TextField } from "@mui/material";
 import Link from "next/link";
 
 import styles from "./header.module.scss";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 import { AuthDialog } from "../AuthDialog";
+import { useAppSelector } from "../../redux/hooks";
+import { selectUserData } from "../../redux/slices/user";
+import { Api } from "../../utils/api";
+import { PostProps } from "../../utils/api/types";
 
 const menu = [
   { text: "about", path: "/" },
@@ -15,14 +19,32 @@ const menu = [
 ];
 
 export const Header: React.FC = () => {
+  const userData = useAppSelector(selectUserData);
+  const [searchValue, setSearchValue] = useState("");
   const router = useRouter();
   const [open, setOpen] = useState(false);
-
+  const [posts, setPosts] = useState<PostProps[]>([]);
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  useEffect(() => {
+    if (open && userData) {
+      setOpen(false);
+    }
+  }, [open, userData]);
+
+  const handleChangeInput: ChangeEventHandler<HTMLInputElement> = async (e) => {
+    setSearchValue(e.target.value);
+    try {
+      const { items } = await Api().post.search({ title: e.target.value });
+      setPosts(items);
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   return (
@@ -67,7 +89,13 @@ export const Header: React.FC = () => {
             </Link>
           </div>
         ))}
-        <Login onClick={handleClickOpen} className={styles.login} />
+        {userData ? (
+          <Avatar className={styles.headerAvatar} variant="rounded" alt="Avatar">
+            {userData.fullName.slice(0, 1)}
+          </Avatar>
+        ) : (
+          <Login onClick={handleClickOpen} className={styles.login} />
+        )}
         <AuthDialog onClose={handleClose} open={open} />
       </div>
     </div>

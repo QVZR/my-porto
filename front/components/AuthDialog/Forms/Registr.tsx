@@ -9,9 +9,9 @@ import { FormField } from "../../FormField";
 import { RegistrSchema } from "../../../utils/validations";
 
 import styles from "../AuthDialog.module.scss";
-// import { useAppDispatch } from "../../../redux/hooks";
-// import { setUserData } from "../../../redux/slices/user";
-// import { Api } from "../../../utils/api";
+import { Api } from "../../../utils/api";
+import { useAppDispatch } from "../../../redux/hooks";
+import { setUserData } from "../../../redux/slices/user";
 
 interface RegistrProps {
   setFormTypeLogin: () => void;
@@ -19,26 +19,26 @@ interface RegistrProps {
 }
 
 export const Registr: React.FC<RegistrProps> = ({ setFormTypeLogin, setFormTypeMain }) => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const form = useForm({ resolver: yupResolver(RegistrSchema), mode: "onChange" });
   const [errorMessage, setErrorMessage] = useState(false);
 
   const onSubmit = async (dto: any) => {
-    // try {
-    //   const data = await Api().user.registr(dto);
+    try {
+      const data = await Api().user.registr(dto);
 
-    //   setCookie(null, "token", data.token, {
-    //     maxAge: 30 * 24 * 60 * 60,
-    //     path: "/",
-    //   });
-    //   setErrorMessage(false);
-    //   dispatch(setUserData(data));
-    // } catch (error: any) {
-    //   console.warn("Ошибка при регистрации", error);
+      setCookie(null, "token", data.token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
+      setErrorMessage(false);
+      dispatch(setUserData(data));
+    } catch (error: any) {
+      console.warn("Ошибка при регистрации", error);
 
-    //   setErrorMessage(error.response.data.message);
-    // }
+      setErrorMessage(error.response.data.message);
+    }
   };
 
   return (

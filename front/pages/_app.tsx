@@ -2,8 +2,14 @@ import "../styles/globals.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import "macro-css";
+import { setUserData } from "../redux/slices/user";
+import { wrapper } from "../redux/store";
+import { Api } from "../utils/api";
+import { Provider } from "react-redux";
+import { CssBaseline } from "@mui/material";
 
-function MyApp({ Component, pageProps }: AppProps) {
+
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -17,9 +23,31 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
       </Head>
+
+      <CssBaseline />
+
       <Component {...pageProps} />
     </>
   );
 }
 
-export default MyApp;
+App.getInitialProps = wrapper.getInitialAppProps((store) => async ({ ctx, Component }) => {
+  try {
+    const userData = await Api(ctx).user.getMe();
+
+    store.dispatch(setUserData(userData));
+  } catch (error) {
+    if (ctx.asPath === "/write") {
+      ctx.res?.writeHead(302, { Location: "/403" });
+      ctx.res?.end();
+    }
+    console.log(error);
+  }
+  return {
+    pageProps: {
+      ...(Component.getInitialProps ? await Component.getInitialProps({ ...ctx, store }) : {}),
+    },
+  };
+});
+
+export default wrapper.withRedux(App);
