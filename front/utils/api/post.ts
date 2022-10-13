@@ -3,7 +3,7 @@ import { PostProps } from "./types";
 
 type CreatePostDto = {
   title: string;
-  body: ["blocks"];
+  text: string;
 };
 type SearchPostDto = {
   title?: string;

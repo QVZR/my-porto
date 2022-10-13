@@ -9,10 +9,11 @@ interface WritePageProps {
   post: PostProps;
 }
 
-const WritePage: NextPage<WritePageProps	> = ({}) => {
+const WritePage: NextPage<WritePageProps> = ({ post }) => {
+  console.log(post);
   return (
     <MainLayout>
-      <WriteForm />
+      <WriteForm data={post} />
     </MainLayout>
   );
 };
@@ -42,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       props: {},
       redirect: {
         destination: "/",
-        permanent: false,	
+        permanent: false,
       },
     };
   }

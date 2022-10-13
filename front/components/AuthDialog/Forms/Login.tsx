@@ -7,10 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "../AuthDialog.module.scss";
 import { LoginSchema } from "../../../utils/validations";
 import { FormField } from "../../FormField";
-// import { setCookie } from "nookies";
-// import { useAppDispatch } from "../../../redux/hooks";
-// import { setUserData } from "../../../redux/slices/user";
-// import { Api } from "../../../utils/api";
+import { setCookie } from "nookies";
+import { useAppDispatch } from "../../../redux/hooks";
+import { setUserData } from "../../../redux/slices/user";
+import { Api } from "../../../utils/api";
 
 interface LoginProps {
   setFormTypeMain: () => void;
@@ -19,26 +19,26 @@ interface LoginProps {
 }
 
 export const Login: React.FC<LoginProps> = ({ setFormTypeMain, setFormTypeRegistr }) => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const form = useForm({ resolver: yupResolver(LoginSchema), mode: "onChange" });
   const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (dto: any) => {
-    // try {
-    //   const data = await Api().user.login(dto);
+    try {
+      const data = await Api().user.login(dto);
 
-    //   setCookie(null, "token", data.token, {
-    //     maxAge: 30 * 24 * 60 * 60, 
-    //     path: "/",
-    //   });
-    //   setErrorMessage("");
-    //   dispatch(setUserData(data));
-    // } catch (error: any) {
-    //   console.warn("Ошибка при регистрации", error);
+      setCookie(null, "token", data.token, {
+        maxAge: 30 * 24 * 60 * 60, 
+        path: "/",
+      });
+      setErrorMessage("");
+      dispatch(setUserData(data));
+    } catch (error: any) {
+      console.warn("Ошибка при регистрации", error);
 
-    //   setErrorMessage(error.response.data.message);
-    // }
+      setErrorMessage(error.response.data.message);
+    }
   };
 
   return (

@@ -4,28 +4,25 @@ import { Button, Divider, Paper, Typography } from "@mui/material";
 import styles from "./FullPost.module.scss";
 import { PostActions } from "../Post/PostActions";
 import { PersonAddAltOutlined, SmsOutlined } from "@mui/icons-material";
-// import { OutputBlockData } from "@editorjs/editorjs";
 
 interface FullPostProps {
   title: string;
-  blocks: OutputBlockData[];
+  text: string;
+  id: number;
+  views: number;
 }
 
-export const FullPost: React.FC<FullPostProps> = ({ title, blocks }) => {
+export const FullPost: React.FC<FullPostProps> = ({ title, text, id, views }) => {
   return (
     <Paper elevation={0} className={styles.fullPost}>
       <div>
         <Typography className={styles.title} variant="h5">
           {title}
         </Typography>
-
-        {blocks.map((obj) => (
-          <Typography key={obj.id} dangerouslySetInnerHTML={{ __html: obj.data.text }}></Typography>
-        ))}
+        <p>{text}</p>
         <div>
-          <PostActions />
+          <PostActions id={id} views={views} />
         </div>
-    
       </div>
     </Paper>
   );

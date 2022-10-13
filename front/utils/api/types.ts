@@ -24,13 +24,11 @@ export type ResponseUser = {
 export type PostProps = {
   id: number;
   title: string;
-  description: string;
-  tags: null | string;
+  text: string;
   createdAt: string;
   updatedAt: string;
   views: number;
   user: ResponseUser;
-  body: ["blocks"];
 };
 export type CommentProps = {
   id: number;

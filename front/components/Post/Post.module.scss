@@ -23,9 +23,11 @@
 }
 
 .text {
+  width: 100%;
   margin-top: 15px;
   margin-bottom: 15px;
   color: #000 !important;
+  word-wrap: break-word;
 }
 
 .paper {
@@ -57,10 +59,9 @@
 
     p {
       margin: 0;
-     
+
       position: relative;
       color: #000 !important;
-
     }
     svg {
       margin-right: 5px;

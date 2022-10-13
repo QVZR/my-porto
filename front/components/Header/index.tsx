@@ -1,5 +1,5 @@
 import { Login } from "@mui/icons-material";
-import { Avatar, TextField } from "@mui/material";
+import { Avatar, Button, TextField } from "@mui/material";
 import Link from "next/link";
 
 import styles from "./header.module.scss";
@@ -7,9 +7,10 @@ import { useRouter } from "next/router";
 import { ChangeEventHandler, useEffect, useState } from "react";
 import { AuthDialog } from "../AuthDialog";
 import { useAppSelector } from "../../redux/hooks";
-import { selectUserData } from "../../redux/slices/user";
+import { logout, selectUserData } from "../../redux/slices/user";
 import { Api } from "../../utils/api";
 import { PostProps } from "../../utils/api/types";
+import { useDispatch } from "react-redux";
 
 const menu = [
   { text: "about", path: "/" },
@@ -19,11 +20,13 @@ const menu = [
 ];
 
 export const Header: React.FC = () => {
+  const dispatch = useDispatch();
   const userData = useAppSelector(selectUserData);
   const [searchValue, setSearchValue] = useState("");
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [posts, setPosts] = useState<PostProps[]>([]);
+  const [exit, setExit] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -44,6 +47,24 @@ export const Header: React.FC = () => {
       setPosts(items);
     } catch (error) {
       console.warn(error);
+    }
+  };
+
+  const onClickLogout = () => {
+    if (window.confirm("Вы действительно хотите выйти?")) {
+      const CookiesDelete = () => {
+        const cookies = document.cookie.split(";");
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i];
+          const eqPos = cookie.indexOf("=");
+          const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+          document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+          document.cookie = name + "=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        }
+      };
+      CookiesDelete();
+      setExit(false);
+      dispatch(logout());
     }
   };
 
@@ -90,9 +111,27 @@ export const Header: React.FC = () => {
           </div>
         ))}
         {userData ? (
-          <Avatar className={styles.headerAvatar} variant="rounded" alt="Avatar">
-            {userData.fullName.slice(0, 1)}
-          </Avatar>
+          <>
+            <Avatar
+              onClick={() => setExit(!exit)}
+              className={styles.headerAvatar}
+              variant="rounded"
+              alt="Avatar"
+            >
+              {userData.fullName.slice(0, 1)}
+            </Avatar>
+            {exit && (
+              <Button
+                onClick={() => {
+                  onClickLogout();
+                }}
+                className={styles.exitButton}
+                variant="contained"
+              >
+                logout
+              </Button>
+            )}
+          </>
         ) : (
           <Login onClick={handleClickOpen} className={styles.login} />
         )}

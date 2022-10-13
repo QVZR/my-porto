@@ -11,7 +11,12 @@ import styles from "./Post.module.scss";
 import { Divider, IconButton } from "@mui/material";
 import Link from "next/link";
 
-export const PostActions = ({ id }) => {
+type PosrActionsProps = {
+  id: Number;
+  views: number;
+};
+
+export const PostActions: React.FC<PosrActionsProps> = ({ id, views }) => {
   return (
     <div className={styles.postFooter}>
       <Divider />
@@ -30,7 +35,7 @@ export const PostActions = ({ id }) => {
         <li>
           <VisibilityOutlined />
 
-          <p>2</p>
+          <p>{views}</p>
         </li>
       </ul>
     </div>

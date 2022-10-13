@@ -7,14 +7,22 @@ import "easymde/dist/easymde.min.css";
 import styles from "./WriteForm.module.scss";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useAppSelector } from "../../redux/hooks";
+import { useRouter } from "next/router";
+import { Api } from "../../utils/api";
+import { PostProps } from "../../utils/api/types";
 
 const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
-export const WriteForm = () => {
-  const [text, setText] = useState("");
-  const [title, setTitle] = useState("");
+interface WriteFormProps {
+  data?: PostProps;
+}
 
-  const isEditing = Boolean(true);
+export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
+  const [text, setText] = useState("");
+  const router = useRouter();
+  const [title, setTitle] = useState(data?.title || "");
+  const [isLoading, setIsLodaing] = useState(false);
 
   const onChange = React.useCallback((value: string) => {
     setText(value);
@@ -27,7 +35,9 @@ export const WriteForm = () => {
       autofocus: true,
       placeholder: "Введите текст...",
       status: false,
+
       autosave: {
+        uniqueId: data?.id.toString() as string,
         enabled: true,
         delay: 1000,
       },
@@ -35,41 +45,63 @@ export const WriteForm = () => {
     []
   );
 
-  // const isAuth = useSelector(isAuthSelector);
-  // if (!window.localStorage.getItem("token") && !isAuth) {
-  //   return <Navigate to="/" />;
-  // }
+  const onAddPost = async () => {
+    try {
+      setIsLodaing(true);
+      const obj = {
+        title,
+        text,
+      };
+      if (!data) {
+        const post = await Api().post.create(obj);
+        await router.push(`write/${post.id}`);
+      }
+      if (data) {
+        await Api().post.update(data.id, obj);
+      }
+      setTitle("");
+      setText("");
+    } catch (error) {
+      console.warn("Create post", error);
+      alert(error);
+    } finally {
+      setIsLodaing(false);
+    }
+  };
 
   return (
-    <Paper elevation={0} style={{ padding: 30 }} className={styles.wrapper}>
+    <Paper elevation={0} style={{ padding: 25 }} className={styles.wrapper}>
       <TextField
         classes={{ root: styles.title }}
         variant="standard"
         placeholder="Заголовок статьи..."
         fullWidth
-        value={title}
+        value={data?.title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
       <SimpleMdeReact
         className={styles.editor}
-        value={text}
+        value={data?.text}
         onChange={onChange}
         options={options}
       />
       <div className={styles.buttons}>
-        {isEditing ? (
-          <Button size="large" variant="contained">
-            Save
-          </Button>
-        ) : (
-          <Button size="large" variant="contained">
-            Public
-          </Button>
-        )}
-        <Link href="/">
+        <Button
+          className={styles.inButton}
+          disabled={isLoading || !text || !title}
+          onClick={onAddPost}
+          size="large"
+          variant="contained"
+        >
+          {data ? "Save" : "Public"}
+        </Button>
+
+        <Link href="/blog">
           <a>
-            <Button size="large">Cancel</Button>
+            <Button className={styles.inButton} size="large">
+              Cancel
+            </Button>
           </a>
         </Link>
       </div>

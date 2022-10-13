@@ -18,7 +18,7 @@ interface SlugProps {
   post: PostProps;
 }
 
-const Slug: NextPage = ({}) => {
+const Slug: NextPage<SlugProps> = ({ post }) => {
   return (
     <MainLayout>
       {" "}
@@ -30,7 +30,7 @@ const Slug: NextPage = ({}) => {
         </a>
       </Link>
       <div className={styles.slugRow}>
-        <FullPost title="title 1" blocks={[]} />
+        <FullPost title={post.title} text={post.text} id={post.id} views={post.views} />
         <PostComments postId={1} />
       </div>
     </MainLayout>

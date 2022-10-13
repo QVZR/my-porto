@@ -133,16 +133,35 @@
   }
 }
 
+.exitButton {
+  position: absolute;
+  background-color: #182a3a !important;
+  color: #c3d1d9 !important;
+  font-weight: 200;
+  height: 35px;
+  right: 10px;
+  bottom: -40px;
+  letter-spacing: 1px;
+  font-size: 15px;
+  padding: 6px 12px;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    background-color: rgba(227, 50, 65) !important;
+  }
+}
+
 .headerAvatar {
   height: 35px;
   cursor: pointer;
-  background-color: #182a3a;
+  background-color: #294863;
   text-align: center;
-  border-radius: 50%;
+  border-radius: 4px;
   color: #c3d1d9;
   transition: all 0.15s ease-in-out;
   font-weight: 200;
-	text-align: center;
+  text-align: center;
+  position: relative;
   &:hover {
     background-color: rgba(227, 50, 65, 1);
   }
