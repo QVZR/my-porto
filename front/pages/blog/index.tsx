@@ -1,5 +1,5 @@
-import { NextPage } from "next";
-import { Post } from "../../components/Post";
+import { GetServerSideProps, NextPage } from "next";
+import Post from "../../components/Post";
 import { useRouter } from "next/router";
 import { MainLayout } from "../../layouts/MainLayout";
 import styles from "./Blog.module.scss";
@@ -13,11 +13,12 @@ import { isAuthSelector } from "../../redux/slices/user";
 
 interface HomeProps {
   posts: PostProps[];
+
 }
 
 const Works: NextPage<HomeProps> = ({ posts }) => {
-  const router = useRouter();
   const isAuth = useSelector(isAuthSelector);
+
 
   return (
     <div className={styles.wrapper}>
@@ -30,7 +31,14 @@ const Works: NextPage<HomeProps> = ({ posts }) => {
           </a>
         </Link>
         {posts.map((obj) => (
-          <Post key={obj.id} id={obj.id} title={obj.title} text={obj.text} views={obj.views} />
+          <Post
+            {...obj}
+            key={obj.id}
+            id={obj.id}
+            title={obj.title}
+            text={obj.text}
+            views={obj.views}
+          />
         ))}
       </MainLayout>
     </div>
@@ -40,6 +48,7 @@ const Works: NextPage<HomeProps> = ({ posts }) => {
 export const getServerSideProps = async () => {
   try {
     const posts = await Api().post.getAll();
+
     return {
       props: {
         posts,
@@ -54,5 +63,7 @@ export const getServerSideProps = async () => {
     },
   };
 };
+
+
 
 export default Works;

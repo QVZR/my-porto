@@ -1,18 +1,29 @@
+import { ArrowBackOutlined } from "@mui/icons-material";
+import { Button } from "@mui/material";
 import { GetServerSideProps, NextPage } from "next";
+import Link from "next/link";
 import React from "react";
 import { WriteForm } from "../../components/WtiteForm";
 import { MainLayout } from "../../layouts/MainLayout";
 import { Api } from "../../utils/api";
 import { PostProps } from "../../utils/api/types";
 
+import styles from "../posts/Slug.module.scss";
+
 interface WritePageProps {
   post: PostProps;
 }
 
 const WritePage: NextPage<WritePageProps> = ({ post }) => {
-  console.log(post);
   return (
     <MainLayout>
+      <Link href="/blog">
+        <a>
+          <Button className={styles.headerPenButton} variant="contained">
+            <ArrowBackOutlined /> Back
+          </Button>
+        </a>
+      </Link>
       <WriteForm data={post} />
     </MainLayout>
   );

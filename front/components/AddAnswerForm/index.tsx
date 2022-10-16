@@ -1,28 +1,29 @@
 import { Button, Input } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { Api } from "../../utils/api";
-import { CommentProps } from "../../utils/api/types";
+import { AnswerProps } from "../../utils/api/types";
 
-import styles from "./AddCommentForm.module.scss";
+import styles from "./AddAnswerForm.module.scss";
 
-interface AddCommentFormProps {
+interface AddAnswerFormProps {
+  commentId: number;
   postId: number;
-  onAdd: (obj: CommentProps) => void;
+  onAdd: (obj: AnswerProps) => void;
 }
 
-export const AddCommentForm: React.FC<AddCommentFormProps> = ({ postId, onAdd }) => {
+export const AddAnswerForm: React.FC<AddAnswerFormProps> = ({ commentId, onAdd, postId }) => {
   const [text, setText] = useState("");
   const [clicked, setClicked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const onButtonClick = async () => {
     try {
       setIsSubmitting(true);
-      const comment = await Api().comment.create({
-        postId,
+      const answer = await Api().answer.create({
+        commentId,
         text,
+        postId,
       });
-      onAdd(comment);
+      onAdd(answer);
       setClicked(false);
       setText("");
     } catch (error) {

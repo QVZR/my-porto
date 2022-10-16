@@ -1,6 +1,7 @@
 .fullPost {
   padding: 24px 25px 25px;
   font-size: 22px;
+  position: relative;
 
   p {
     color: #000;
@@ -55,5 +56,21 @@
   svg {
     fill: #c3d1d9;
     margin-right: 10px;
+  }
+}
+
+.editButtons {
+  position: absolute;
+  right: 25px;
+  top: 20px;
+  button {
+    &:hover {
+      background: none;
+    }
+  }
+  svg {
+    &:hover {
+      fill: rgba(227, 50, 65, 1);
+    }
   }
 }

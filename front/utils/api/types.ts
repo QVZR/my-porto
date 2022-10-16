@@ -1,5 +1,3 @@
-import { Post } from "./../../components/Post/index";
-
 export type UserLoginDto = {
   email: string;
   password: string;
@@ -29,6 +27,7 @@ export type PostProps = {
   updatedAt: string;
   views: number;
   user: ResponseUser;
+  comments: any;
 };
 export type CommentProps = {
   id: number;
@@ -37,4 +36,13 @@ export type CommentProps = {
   user: ResponseUser;
   createdAt: string;
   updatedAt: string;
+};
+export type AnswerProps = {
+  id: number;
+  text: string;
+  comment: CommentProps;
+  user: ResponseUser;
+  createdAt: string;
+  updatedAt: string;
+  post: PostProps;
 };

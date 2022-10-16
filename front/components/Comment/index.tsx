@@ -1,10 +1,11 @@
 import { MoreHorizOutlined } from "@mui/icons-material";
 import { Avatar, Button, Divider, Menu, MenuItem, Typography } from "@mui/material";
-import Link from "next/link";
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import { Api } from "../../utils/api";
-import { ResponseUser } from "../../utils/api/types";
+import { AnswerProps, ResponseUser } from "../../utils/api/types";
+import { AddAnswerForm } from "../AddAnswerForm";
 
+import { Answer } from "../Answer";
 import styles from "./Comment.module.scss";
 
 export interface CommentPostProps {
@@ -14,6 +15,7 @@ export interface CommentPostProps {
   user: ResponseUser;
   currentUserId: number | undefined;
   onRemove: (id: number) => void;
+  postId: number;
 }
 
 export const Comment: React.FC<CommentPostProps> = ({
@@ -23,8 +25,25 @@ export const Comment: React.FC<CommentPostProps> = ({
   currentUserId,
   onRemove,
   id,
+  postId,
 }) => {
+  const [openAnswerform, setOpenAnswerForm] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<any>(null);
+  const [answers, setAnswers] = useState<AnswerProps[]>([]);
+
+  const onAddAnswer = async (obj: AnswerProps) => {
+    const data = await Api().answer.getAllAll();
+    setAnswers(data);
+    setOpenAnswerForm(false);
+  };
+
+  useEffect(() => {
+    const fetchAnswers = async () => {
+      const data = await Api().answer.getAllAll();
+      setAnswers(data);
+    };
+    fetchAnswers();
+  }, []);
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,31 +66,39 @@ export const Comment: React.FC<CommentPostProps> = ({
       }
     }
   };
+  const onRemoveAnswer = (id: number) => {
+    setAnswers((prev) => prev.filter((obj) => obj.id !== id));
+  };
 
+  const onClickAnswer = () => {
+    setOpenAnswerForm(!openAnswerform);
+  };
+  console.log(answers);
   return (
     <div className={styles.row}>
-      <Link href={`/posts/${user.id}`}>
-        <a>
-          <div className={styles.title}>
-            <Avatar variant="circular" alt="Avatar" className="mr-10">
-              {user.fullName && user.fullName.slice(0, 1)}
-            </Avatar>
-            <div className={styles.titleText}>
-              <b>{user.fullName}</b>
-              <span>{new Date(createdAt).toLocaleString()}</span>
-            </div>
+      <a>
+        <div className={styles.title}>
+          <Avatar variant="circular" alt="Avatar" className="mr-10">
+            {user.fullName && user.fullName.slice(0, 1)}
+          </Avatar>
+          <div className={styles.titleText}>
+            <b>{user.fullName}</b>
+            <span>{new Date(createdAt).toLocaleString()}</span>
           </div>
-        </a>
-      </Link>
+        </div>
+      </a>
       <Typography className={styles.text}>{text}</Typography>
-      <div className="d-flex align-center">
+      <div className={styles.buttonMenu}>
         {user.id === currentUserId && (
           <>
             {" "}
-            <Button className={styles.button}>Ответить</Button>
+            <Button onClick={onClickAnswer} className={styles.button}>
+              Ответить
+            </Button>
             <Button className={(styles.button, styles.buttonDots)} onClick={handleClick}>
               <MoreHorizOutlined />
             </Button>
+            {openAnswerform && <AddAnswerForm postId={postId} onAdd={onAddAnswer} commentId={id} />}
             <Menu
               anchorEl={anchorEl}
               elevation={2}
@@ -80,12 +107,27 @@ export const Comment: React.FC<CommentPostProps> = ({
               keepMounted
             >
               <MenuItem onClick={handleClickRemove}>Удалить</MenuItem>
-              <MenuItem onClick={handleClose}>Редактировать</MenuItem>
             </Menu>
           </>
         )}
       </div>
-      <Divider className="mt-30 mb-40" />
+      {answers &&
+        answers
+          .filter((answer) => answer.comment.id === id)
+          .map((obj: AnswerProps) => (
+            <Answer
+              {...obj}
+              key={obj.id}
+              {...obj}
+              id={obj.id}
+              user={obj.user}
+              text={obj.text}
+              createdAt={obj.createdAt}
+              currentUserId={currentUserId}
+              onRemove={onRemoveAnswer}
+            />
+          ))}
+      <Divider className="mt-10 mb-40" />
     </div>
   );
 };

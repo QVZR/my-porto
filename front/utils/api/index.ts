@@ -4,11 +4,13 @@ import Cookies, { parseCookies } from "nookies";
 import { CommentApi } from "./comment";
 import { PostApi } from "./post";
 import { UserApi } from "./user";
+import { AnswerApi } from "./answer";
 
 export type ApiReturnType = {
   user: ReturnType<typeof UserApi>;
   post: ReturnType<typeof PostApi>;
   comment: ReturnType<typeof CommentApi>;
+  answer: ReturnType<typeof AnswerApi>;
 };
 
 export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiReturnType => {
@@ -26,5 +28,6 @@ export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiRetur
     user: UserApi(instance),
     post: PostApi(instance),
     comment: CommentApi(instance),
+    answer: AnswerApi(instance),
   };
 };

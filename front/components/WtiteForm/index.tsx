@@ -7,7 +7,6 @@ import "easymde/dist/easymde.min.css";
 import styles from "./WriteForm.module.scss";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useAppSelector } from "../../redux/hooks";
 import { useRouter } from "next/router";
 import { Api } from "../../utils/api";
 import { PostProps } from "../../utils/api/types";
@@ -59,8 +58,10 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
       if (data) {
         await Api().post.update(data.id, obj);
       }
+
       setTitle("");
       setText("");
+      router.push("/blog/");
     } catch (error) {
       console.warn("Create post", error);
       alert(error);
@@ -76,7 +77,7 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
         variant="standard"
         placeholder="Заголовок статьи..."
         fullWidth
-        value={data?.title}
+        value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 

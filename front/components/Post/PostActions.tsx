@@ -10,13 +10,18 @@ import {
 import styles from "./Post.module.scss";
 import { Divider, IconButton } from "@mui/material";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { selectCommentsData } from "../../redux/slices/comments";
 
 type PosrActionsProps = {
   id: Number;
   views: number;
+  commentCount: number;
 };
 
-export const PostActions: React.FC<PosrActionsProps> = ({ id, views }) => {
+export const PostActions: React.FC<PosrActionsProps> = ({ id, views, commentCount }) => {
+  const count = useSelector(selectCommentsData);
+
   return (
     <div className={styles.postFooter}>
       <Divider />
@@ -29,7 +34,7 @@ export const PostActions: React.FC<PosrActionsProps> = ({ id, views }) => {
               </IconButton>
             </a>
           </Link>
-          <p>2</p>
+          <p>{commentCount}</p>
         </li>
 
         <li>

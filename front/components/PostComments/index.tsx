@@ -4,32 +4,43 @@ import { AddCommentForm } from "../AddCommentForm";
 import { Comment } from "../Comment";
 
 import styles from "./PostComments.module.scss";
-// import { Api } from "../../utils/api";
-// import { CommentProps } from "../../utils/api/types";
-// import { selectUserData } from "../../redux/slices/user";
-// import { useAppSelector } from "../../redux/hooks";
-// import { useComments } from "../../hooks/useComments";
+import { CommentProps } from "../../utils/api/types";
+import { selectUserData } from "../../redux/slices/user";
+import { useAppSelector } from "../../redux/hooks";
+import { useComments } from "../../hooks/useComments";
+
+import { useDispatch, useSelector } from "react-redux";
+import { selectCommentsData, setCommentData } from "../../redux/slices/comments";
+import { Api } from "../../utils/api";
 
 export interface PostCommentProps {
   postId: number;
+  commentCount: number;
 }
 
-export const PostComments: React.FC<PostCommentProps> = ({ postId }) => {
-  // const userData = useAppSelector(selectUserData);
+export const PostComments: React.FC<PostCommentProps> = ({ postId, commentCount }) => {
+  const dispatch = useDispatch();
+  const userData = useAppSelector(selectUserData);
   const [activeTab, setActiveTab] = useState(0);
-  // const { comments, setComments } = useComments(postId);
+  const { comments, setComments } = useComments(postId);
 
-  // const onAddComment = (obj: CommentProps) => {
-  //   setComments((prev) => [...prev, obj]);
-  // };
+  const onAddComment = (obj: CommentProps) => {
+    setComments((prev) => [obj, ...prev]);
+    dispatch(setCommentData(obj));
+  };
 
-  // const onRemoveComment = (id: number) => {
-  //   setComments((prev) => prev.filter((obj) => obj.id !== id));
-  // };
+  const onRemoveComment = (id: number) => {
+    setComments((prev) =>
+      prev.filter((obj) => {
+        dispatch(setCommentData(obj));
+        return obj.id !== id;
+      })
+    );
+  };
 
   return (
     <Paper elevation={0} className={styles.commentForm}>
-      <Typography variant="h6">42 комментария</Typography>
+      <Typography variant="h6"> {comments.length || commentCount} comments</Typography>
       <Tabs
         onChange={(_, newValue) => setActiveTab(newValue)}
         className="mt-20"
@@ -41,9 +52,27 @@ export const PostComments: React.FC<PostCommentProps> = ({ postId }) => {
         <Tab label="По порядку" />
       </Tabs>
 
-      <AddCommentForm />
+      <Divider className={styles.divider} />
 
-      <div className="pb-10 text-center">Пока нет комментариев, напиши первым ...</div>
+      {userData && <AddCommentForm onAdd={onAddComment} postId={postId} />}
+
+      {comments.length ? (
+        comments.map((obj) => (
+          <Comment
+            {...obj}
+            key={obj.id}
+            id={obj.id}
+            user={obj.user}
+            text={obj.text}
+            createdAt={obj.createdAt}
+            currentUserId={userData?.id}
+            onRemove={onRemoveComment}
+            postId={postId}
+          />
+        ))
+      ) : (
+        <div className="pb-30 text-center">Пока нет комментариев, напиши первым ...</div>
+      )}
     </Paper>
   );
 };

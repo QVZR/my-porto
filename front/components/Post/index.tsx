@@ -1,9 +1,13 @@
 import { Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./Post.module.scss";
 import Link from "next/link";
 import { PostActions } from "./PostActions";
+
+import { Api } from "../../utils/api";
+import { GetServerSideProps } from "next";
+import { CommentProps } from "../../utils/api/types";
 
 interface PostProps {
   id: number;
@@ -12,7 +16,22 @@ interface PostProps {
   views: number;
 }
 
-export const Post: React.FC<PostProps> = ({ title, text, id, views }) => {
+const Post: React.FC<PostProps> = ({ title, text, id, views }) => {
+  const [comments, setComments] = useState<CommentProps[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const comment = await Api().comment.getAll(id);
+
+        setComments(comment);
+      } catch (error) {
+        console.warn("Fetch comment", error);
+      }
+    })();
+  }, []);
+
+
   return (
     <div className={styles.post}>
       <Paper elevation={0} className={styles.postInner} classes={{ root: styles.paper }}>
@@ -25,8 +44,10 @@ export const Post: React.FC<PostProps> = ({ title, text, id, views }) => {
         </Link>
         <Typography className={styles.text}>{text}</Typography>
 
-        <PostActions id={id} views={views} />
+        <PostActions commentCount={comments.length} id={id} views={views} />
       </Paper>
     </div>
   );
 };
+
+export default Post;

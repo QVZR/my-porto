@@ -1,7 +1,6 @@
 import { ArrowBackOutlined } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { GetServerSideProps, NextPage } from "next";
-import { ApiError } from "next/dist/server/api-utils";
 import Link from "next/link";
 import React from "react";
 
@@ -10,15 +9,17 @@ import { PostComments } from "../../components/PostComments";
 
 import { MainLayout } from "../../layouts/MainLayout";
 import { Api } from "../../utils/api";
-import { PostProps } from "../../utils/api/types";
+import { CommentProps, PostProps, ResponseUser } from "../../utils/api/types";
 
 import styles from "./Slug.module.scss";
 
 interface SlugProps {
   post: PostProps;
+  user: ResponseUser;
+  comments: any;
 }
 
-const Slug: NextPage<SlugProps> = ({ post }) => {
+const Slug: NextPage<SlugProps> = ({ post, user, comments }) => {
   return (
     <MainLayout>
       {" "}
@@ -30,8 +31,16 @@ const Slug: NextPage<SlugProps> = ({ post }) => {
         </a>
       </Link>
       <div className={styles.slugRow}>
-        <FullPost title={post.title} text={post.text} id={post.id} views={post.views} />
-        <PostComments postId={1} />
+        <FullPost
+          title={post.title}
+          text={post.text}
+          id={post.id}
+          views={post.views}
+          userId={user.id}
+          postUserId={post.user.id}
+          comments={comments}
+        />
+        <PostComments commentCount={comments.length} postId={post.id} />
       </div>
     </MainLayout>
   );
@@ -41,9 +50,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const id = ctx.params?.id;
     const post = await Api(ctx).post.getOne(+(id as string));
+    const user = await Api(ctx).user.getMe();
+    const comments = await Api(ctx).comment.getAll(post.id);
 
     return {
-      props: { post },
+      props: { post, user, comments },
     };
   } catch (error) {
     console.log("Full post page", error);
