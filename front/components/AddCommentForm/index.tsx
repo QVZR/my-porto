@@ -1,5 +1,5 @@
 import { Button, Input } from "@mui/material";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Api } from "../../utils/api";
 import { CommentProps } from "../../utils/api/types";
 

@@ -36,6 +36,7 @@ export type CommentProps = {
   user: ResponseUser;
   createdAt: string;
   updatedAt: string;
+  answersLength: number;
 };
 export type AnswerProps = {
   id: number;

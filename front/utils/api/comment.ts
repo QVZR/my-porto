@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { CommentProps, PostProps } from "./types";
+import { CommentProps } from "./types";
 
 type CreateCommentDto = {
   postId: number;

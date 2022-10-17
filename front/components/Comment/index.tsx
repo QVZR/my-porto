@@ -16,6 +16,7 @@ export interface CommentPostProps {
   currentUserId: number | undefined;
   onRemove: (id: number) => void;
   postId: number;
+  list: number;
 }
 
 export const Comment: React.FC<CommentPostProps> = ({
@@ -26,6 +27,7 @@ export const Comment: React.FC<CommentPostProps> = ({
   onRemove,
   id,
   postId,
+  list,
 }) => {
   const [openAnswerform, setOpenAnswerForm] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<any>(null);
@@ -73,7 +75,7 @@ export const Comment: React.FC<CommentPostProps> = ({
   const onClickAnswer = () => {
     setOpenAnswerForm(!openAnswerform);
   };
-  console.log(answers);
+
   return (
     <div className={styles.row}>
       <a>
@@ -89,16 +91,16 @@ export const Comment: React.FC<CommentPostProps> = ({
       </a>
       <Typography className={styles.text}>{text}</Typography>
       <div className={styles.buttonMenu}>
+        <Button onClick={onClickAnswer} className={styles.button}>
+          Ответить
+        </Button>
+
         {user.id === currentUserId && (
           <>
             {" "}
-            <Button onClick={onClickAnswer} className={styles.button}>
-              Ответить
-            </Button>
             <Button className={(styles.button, styles.buttonDots)} onClick={handleClick}>
               <MoreHorizOutlined />
             </Button>
-            {openAnswerform && <AddAnswerForm postId={postId} onAdd={onAddAnswer} commentId={id} />}
             <Menu
               anchorEl={anchorEl}
               elevation={2}
@@ -110,10 +112,12 @@ export const Comment: React.FC<CommentPostProps> = ({
             </Menu>
           </>
         )}
+        {openAnswerform && <AddAnswerForm postId={postId} onAdd={onAddAnswer} commentId={id} />}
       </div>
       {answers &&
         answers
           .filter((answer) => answer.comment.id === id)
+          .reverse()
           .map((obj: AnswerProps) => (
             <Answer
               {...obj}
@@ -127,7 +131,7 @@ export const Comment: React.FC<CommentPostProps> = ({
               onRemove={onRemoveAnswer}
             />
           ))}
-      <Divider className="mt-10 mb-40" />
+      <Divider className="mt-10 mb-20 " />
     </div>
   );
 };

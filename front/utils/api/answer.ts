@@ -5,6 +5,7 @@ type CreateAnswerDto = {
   commentId: number;
   postId: number;
   text: string;
+
 };
 
 export const AnswerApi = (instance: AxiosInstance) => ({

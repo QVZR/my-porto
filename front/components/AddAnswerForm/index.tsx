@@ -23,6 +23,7 @@ export const AddAnswerForm: React.FC<AddAnswerFormProps> = ({ commentId, onAdd, 
         text,
         postId,
       });
+
       onAdd(answer);
       setClicked(false);
       setText("");

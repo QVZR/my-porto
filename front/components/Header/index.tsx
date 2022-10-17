@@ -64,6 +64,7 @@ export const Header: React.FC = () => {
       };
       CookiesDelete();
       setExit(false);
+      router.push("/");
       dispatch(logout());
     }
   };

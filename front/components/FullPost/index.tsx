@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { CommentProps } from "../../utils/api/types";
 import { selectCommentsData } from "../../redux/slices/comments";
 import { useAppSelector } from "../../redux/hooks";
+import ReactMarkdown from "react-markdown";
 
 interface FullPostProps {
   title: string;
@@ -76,7 +77,9 @@ export const FullPost: React.FC<FullPostProps> = ({
             </IconButton>
           </div>
         )}
-        <p>{text}</p>
+     
+          <ReactMarkdown children={text} />
+       
         <div>
           <PostActions id={id} views={views} commentCount={comments.length} />
         </div>
