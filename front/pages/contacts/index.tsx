@@ -114,13 +114,13 @@ const Contacts: NextPage = () => {
                   <ul>
                     <li>
                       GitHub:{" "}
-                      <a href="https://github.com/vithvo" target="_blank">
+                      <a href="https://github.com/vithvo" target="_blank" rel="noopener noreferrer">
                         https://github.com/vithvo
                       </a>
                     </li>
                     <li>
                       Telegram:{" "}
-                      <a href="https://t.me/vithvoleg" target="_blank">
+                      <a href="https://t.me/vithvoleg" target="_blank" rel="noopener noreferrer">
                         https://t.me/vithvoleg
                       </a>
                     </li>

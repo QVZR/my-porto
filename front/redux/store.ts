@@ -2,10 +2,11 @@ import { userReducer } from "./slices/user";
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { commentsReducer } from "./slices/comments";
+import { answersReducer } from "./slices/answers";
 
 export function makeStore() {
   return configureStore({
-    reducer: { user: userReducer, comments: commentsReducer },
+    reducer: { user: userReducer, comments: commentsReducer, answers: answersReducer },
   });
 }
 

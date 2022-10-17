@@ -21,6 +21,7 @@ export const AddCommentForm: React.FC<AddCommentFormProps> = ({ postId, onAdd })
       const comment = await Api().comment.create({
         postId,
         text,
+        answersLength: 0,
       });
       onAdd(comment);
       setClicked(false);

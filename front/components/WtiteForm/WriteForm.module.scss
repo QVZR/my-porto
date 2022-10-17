@@ -3,6 +3,9 @@
   width: 100%;
   margin: 20px auto;
   position: relative;
+  i.separator {
+    display: none;
+  }
 }
 
 .title {
@@ -27,7 +30,7 @@
     .cm-s-easymde {
       border: 0;
       font-size: 22px;
-			padding: 0;
+      padding: 0;
     }
     span {
       color: #000 !important;
@@ -54,7 +57,7 @@
 }
 
 .inButton {
-	  height: 35px;
+  height: 35px;
   cursor: pointer;
   background-color: #294863;
   text-align: center;

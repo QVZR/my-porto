@@ -9,9 +9,10 @@ import { selectUserData } from "../../redux/slices/user";
 import { useAppSelector } from "../../redux/hooks";
 import { useComments } from "../../hooks/useComments";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCommentData } from "../../redux/slices/comments";
 import { Api } from "../../utils/api";
+import { selectAnswersData } from "../../redux/slices/answers";
 
 export interface PostCommentProps {
   postId: number;
@@ -19,14 +20,17 @@ export interface PostCommentProps {
 }
 
 export const PostComments: React.FC<PostCommentProps> = ({ postId, commentCount }) => {
+  const answer = useSelector(selectAnswersData);
+  console.log(answer);
   const dispatch = useDispatch();
   const userData = useAppSelector(selectUserData);
   const [activeTab, setActiveTab] = useState(0);
   const { comments, setComments } = useComments(postId);
   const [answers, setAnswers] = useState<AnswerProps[]>([]);
+  console.log(activeTab);
 
   const onAddComment = async (obj: CommentProps) => {
-    setComments((prev) => [obj, ...prev]);
+    setComments((prev) => [...prev, obj]);
     dispatch(setCommentData(obj));
   };
 
@@ -35,15 +39,13 @@ export const PostComments: React.FC<PostCommentProps> = ({ postId, commentCount 
       const data = await Api().answer.getAllAll();
       setAnswers(data);
     };
+    const copyComments = comments.map((comment) => ({
+      ...comment,
+      answersLength: answers.filter((answer) => answer.comment.id === comment.id).length,
+    }));
+    setComments(copyComments);
     fetchAnswers();
-    comments.map(
-      (comment) =>
-        (comment.answersLength = answers.filter(
-          (answer) => answer.comment.id === comment.id
-        ).length)
-    );
-    setComments(comments);
-  }, [activeTab]);
+  }, [activeTab, answer]);
 
   const onRemoveComment = (id: number) => {
     setComments((prev) =>
@@ -53,8 +55,6 @@ export const PostComments: React.FC<PostCommentProps> = ({ postId, commentCount 
       })
     );
   };
-  const commentsSort = comments.concat().sort((a, b) => b.answersLength - a.answersLength);
-  console.log(activeTab);
 
   return (
     <Paper elevation={0} className={styles.commentForm}>
@@ -76,35 +76,42 @@ export const PostComments: React.FC<PostCommentProps> = ({ postId, commentCount 
 
       {comments.length ? (
         (activeTab === 0 &&
-          comments.map((obj) => (
-            <Comment
-              {...obj}
-              key={obj.id}
-              id={obj.id}
-              user={obj.user}
-              text={obj.text}
-              createdAt={obj.createdAt}
-              currentUserId={userData?.id}
-              onRemove={onRemoveComment}
-              postId={postId}
-              list={activeTab}
-            />
-          ))) ||
+          comments
+
+            .map((obj) => (
+              <Comment
+                {...obj}
+                key={obj.id}
+                id={obj.id}
+                user={obj.user}
+                text={obj.text}
+                createdAt={obj.createdAt}
+                currentUserId={userData?.id}
+                onRemove={onRemoveComment}
+                postId={postId}
+                list={activeTab}
+              />
+            ))
+            .reverse()) ||
         (activeTab === 1 &&
-          commentsSort.map((obj) => (
-            <Comment
-              {...obj}
-              key={obj.id}
-              id={obj.id}
-              user={obj.user}
-              text={obj.text}
-              createdAt={obj.createdAt}
-              currentUserId={userData?.id}
-              onRemove={onRemoveComment}
-              postId={postId}
-              list={activeTab}
-            />
-          )))
+          comments
+            .concat()
+            .sort((a, b) => a.answersLength - b.answersLength)
+            .map((obj) => (
+              <Comment
+                {...obj}
+                key={obj.id}
+                id={obj.id}
+                user={obj.user}
+                text={obj.text}
+                createdAt={obj.createdAt}
+                currentUserId={userData?.id}
+                onRemove={onRemoveComment}
+                postId={postId}
+                list={activeTab}
+              />
+            ))
+            .reverse())
       ) : (
         <div className="pb-30 text-center">Пока нет комментариев, напиши первым ...</div>
       )}

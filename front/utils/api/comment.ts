@@ -4,6 +4,7 @@ import { CommentProps } from "./types";
 type CreateCommentDto = {
   postId: number;
   text: string;
+  answersLength: Object;
 };
 
 export const CommentApi = (instance: AxiosInstance) => ({

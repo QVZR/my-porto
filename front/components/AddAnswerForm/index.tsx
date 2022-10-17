@@ -1,5 +1,7 @@
 import { Button, Input } from "@mui/material";
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setAnswerData } from "../../redux/slices/answers";
 import { Api } from "../../utils/api";
 import { AnswerProps } from "../../utils/api/types";
 
@@ -12,9 +14,11 @@ interface AddAnswerFormProps {
 }
 
 export const AddAnswerForm: React.FC<AddAnswerFormProps> = ({ commentId, onAdd, postId }) => {
+  const dispatch = useDispatch();
   const [text, setText] = useState("");
   const [clicked, setClicked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const onButtonClick = async () => {
     try {
       setIsSubmitting(true);
@@ -23,6 +27,7 @@ export const AddAnswerForm: React.FC<AddAnswerFormProps> = ({ commentId, onAdd, 
         text,
         postId,
       });
+      dispatch(setAnswerData(answer));
 
       onAdd(answer);
       setClicked(false);

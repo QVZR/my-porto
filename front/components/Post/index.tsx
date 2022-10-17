@@ -6,7 +6,6 @@ import Link from "next/link";
 import { PostActions } from "./PostActions";
 
 import { Api } from "../../utils/api";
-import { GetServerSideProps } from "next";
 import { CommentProps } from "../../utils/api/types";
 
 interface PostProps {

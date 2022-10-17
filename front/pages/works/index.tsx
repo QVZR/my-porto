@@ -47,7 +47,7 @@ const Works: NextPage = () => {
                     </div>
                     <div className={styles.descBottom}>
                       <b>Click here &rarr;</b>{" "}
-                      <a href={item.url} target="_blank">
+                      <a href={item.url} target="_blank" rel="noopener noreferrer">
                         {item.name}
                       </a>
                     </div>
@@ -58,7 +58,7 @@ const Works: NextPage = () => {
             <Paper className={styles.worksBottom}>
               <Typography variant="h5">
                 You can also visit my{" "}
-                <a href="https://github.com/vithvo" target="_blank">
+                <a href="https://github.com/vithvo" target="_blank" rel="noopener noreferrer">
                   GitHub
                 </a>{" "}
                 page and see other works.

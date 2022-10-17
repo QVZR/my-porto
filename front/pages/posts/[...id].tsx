@@ -36,7 +36,7 @@ const Slug: NextPage<SlugProps> = ({ post, user, comments }) => {
           text={post.text}
           id={post.id}
           views={post.views}
-          userId={user.id}
+          userId={user ? user.id : 999999999999999999999}
           postUserId={post.user.id}
           comments={comments}
         />
@@ -58,12 +58,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   } catch (error) {
     console.log("Full post page", error);
+    const id = ctx.params?.id;
+    const post = await Api(ctx).post.getOne(+(id as string));
+    const comments = await Api(ctx).comment.getAll(post.id);
     return {
-      props: {},
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
+      props: { post, comments },
     };
   }
 };

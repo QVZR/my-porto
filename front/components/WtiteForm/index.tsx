@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Api } from "../../utils/api";
 import { PostProps } from "../../utils/api/types";
+import { SimpleMDEReactProps } from "react-simplemde-editor";
 
 const SimpleMdeReact = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
@@ -27,7 +28,7 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
     setText(value);
   }, []);
 
-  const options = React.useMemo(
+  const options: SimpleMDEReactProps = React.useMemo(
     () => ({
       spellChecker: false,
       maxHeight: "400px",
@@ -40,6 +41,7 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
         enabled: true,
         delay: 1000,
       },
+      hideIcons: ["image", "link", "guide", "preview", "side-by-side", "fullscreen"],
     }),
     []
   );

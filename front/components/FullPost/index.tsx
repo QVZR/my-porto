@@ -77,9 +77,9 @@ export const FullPost: React.FC<FullPostProps> = ({
             </IconButton>
           </div>
         )}
-     
-          <ReactMarkdown children={text} />
-       
+
+        <ReactMarkdown>{text}</ReactMarkdown>
+
         <div>
           <PostActions id={id} views={views} commentCount={comments.length} />
         </div>

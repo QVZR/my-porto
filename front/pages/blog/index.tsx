@@ -3,7 +3,7 @@ import Post from "../../components/Post";
 import { useRouter } from "next/router";
 import { MainLayout } from "../../layouts/MainLayout";
 import styles from "./Blog.module.scss";
-import { Button } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import { AddOutlined } from "@mui/icons-material";
 import Link from "next/link";
 import { Api } from "../../utils/api";
@@ -13,12 +13,10 @@ import { isAuthSelector } from "../../redux/slices/user";
 
 interface HomeProps {
   posts: PostProps[];
-
 }
 
 const Works: NextPage<HomeProps> = ({ posts }) => {
   const isAuth = useSelector(isAuthSelector);
-
 
   return (
     <div className={styles.wrapper}>
@@ -30,6 +28,11 @@ const Works: NextPage<HomeProps> = ({ posts }) => {
             </Button>
           </a>
         </Link>
+        {!isAuth && (
+          <Paper className={styles.headerNotation} elevation={0}>
+            Please login or register to create, edit posts and comment on posts
+          </Paper>
+        )}
         {posts.map((obj) => (
           <Post
             {...obj}
@@ -63,7 +66,5 @@ export const getServerSideProps = async () => {
     },
   };
 };
-
-
 
 export default Works;
