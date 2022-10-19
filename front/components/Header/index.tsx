@@ -1,5 +1,5 @@
 import { Login } from "@mui/icons-material";
-import { Avatar, Button, TextField } from "@mui/material";
+import { Avatar, Button, List, ListItem, ListItemButton, Paper, TextField } from "@mui/material";
 import Link from "next/link";
 
 import styles from "./header.module.scss";
@@ -69,6 +69,8 @@ export const Header: React.FC = () => {
     }
   };
 
+  console.log(router.asPath);
+
   return (
     <div className={styles.header}>
       <div className={styles.left}>
@@ -91,14 +93,43 @@ export const Header: React.FC = () => {
         </div>
       </div>
       <div className={styles.right}>
-        <div className={`${styles.nav} ${styles.navSearch}`}>
-          <TextField
-            placeholder="Search..."
-            className={styles.search}
-            id="outlined-basic"
-            variant="outlined"
-          />
-        </div>
+        {(router.asPath === "/blog" || router.asPath.includes("post")) && (
+          <div className={`${styles.nav} ${styles.navSearch}`}>
+            <TextField
+              className={styles.search}
+              placeholder="Search..."
+              id="outlined-basic"
+              variant="outlined"
+              onChange={handleChangeInput}
+              value={searchValue}
+              type="text"
+            />
+
+            {posts.length > 0 && searchValue && (
+              <Paper className={styles.searchPopup}>
+                {posts.map((obj) => (
+                  <Link key={obj.id} href={`/posts/${obj.id}`}>
+                    <a>
+                      <List>
+                        <ListItem>
+                          <ListItemButton
+                            onClick={() => {
+                              setSearchValue("");
+                              setPosts([]);
+                            }}
+                            className={styles.searchPopupbutton}
+                          >
+                            {obj.title}
+                          </ListItemButton>
+                        </ListItem>
+                      </List>
+                    </a>
+                  </Link>
+                ))}
+              </Paper>
+            )}
+          </div>
+        )}
         {menu.slice(3, 4).map((obj, i) => (
           <div
             key={i}

@@ -21,13 +21,11 @@ export interface PostCommentProps {
 
 export const PostComments: React.FC<PostCommentProps> = ({ postId, commentCount }) => {
   const answer = useSelector(selectAnswersData);
-  console.log(answer);
   const dispatch = useDispatch();
   const userData = useAppSelector(selectUserData);
   const [activeTab, setActiveTab] = useState(0);
   const { comments, setComments } = useComments(postId);
   const [answers, setAnswers] = useState<AnswerProps[]>([]);
-  console.log(activeTab);
 
   const onAddComment = async (obj: CommentProps) => {
     setComments((prev) => [...prev, obj]);
