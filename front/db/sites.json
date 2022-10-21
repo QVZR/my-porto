@@ -70,11 +70,11 @@
         "Fake-json server for database"
       ]
     },
-    "url": ""
+    "url": "http://94.154.11.102:3000/"
   },
   {
     "name": "CJournal",
-    "img": "",
+    "img": "img/worksImg/cjournal.png",
     "desc": {
       "title": "Let's honor the memory of the well-known news site TJournal in Russia by poking buttons in its modest copy CJournal",
       "ucan": [
@@ -95,6 +95,6 @@
         "Pasport-JWT"
       ]
     },
-    "url": ""
+    "url": "http://94.154.11.102:3000/"
   }
 ]

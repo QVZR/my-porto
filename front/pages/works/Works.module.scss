@@ -38,7 +38,8 @@
     border-bottom: 2px solid rgba(18, 18, 18, 0.6);
   }
   &:nth-last-child(1),
-  &:nth-last-child(2) {
+  &:nth-last-child(2),
+  &:nth-last-child(3) {
     border-bottom: none;
   }
 
@@ -48,6 +49,7 @@
     // transform: translateY(-50%);
     width: 100%;
     transition: all 0.2s ease-in-out;
+
     &:hover {
       transform: scale(1.1);
       .workDescription {
