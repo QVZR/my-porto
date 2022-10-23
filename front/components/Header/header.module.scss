@@ -96,7 +96,7 @@
   background-color: rgba(100, 105, 113, 0.6);
   width: 250px;
   border-radius: 5px;
-	margin-right: 60px;
+  margin-right: 60px;
   &:after {
     display: none;
   }
@@ -129,6 +129,8 @@
 .login {
   font-size: 30px;
   cursor: pointer;
+  margin-right: 20px;
+  margin-left: 50px;
   &:hover {
     fill: rgba(227, 50, 65);
   }
@@ -154,8 +156,8 @@
 
 .headerAvatar {
   height: 35px;
-	margin-right: 20px;
-	margin-left: 50px;
+  margin-right: 20px;
+  margin-left: 50px;
   cursor: pointer;
   background-color: #294863;
   text-align: center;
@@ -169,7 +171,6 @@
     background-color: rgba(227, 50, 65, 1);
   }
 }
-
 
 .searchPopup {
   display: flex;
@@ -188,9 +189,9 @@
     & > div {
       width: 100%;
     }
-		* {
-			width: 100%;
-		}
+    * {
+      width: 100%;
+    }
   }
   .searchPopupbutton {
     padding: 10px;

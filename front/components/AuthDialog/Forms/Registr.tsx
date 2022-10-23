@@ -34,6 +34,7 @@ export const Registr: React.FC<RegistrProps> = ({ setFormTypeLogin, setFormTypeM
       });
       setErrorMessage(false);
       dispatch(setUserData(data));
+      setFormTypeMain();
     } catch (error: any) {
       console.warn("Ошибка при регистрации", error);
 

@@ -45,8 +45,7 @@ export const About: React.FC = () => {
               <p>And Im a junior front-end developer.</p>
               <p>
                 IM 33 years old. I have extensive experience in leading retail sales teams. And all
-                my life I was fond of programming. Lately, Ive decided to take it up
-                professionally.
+                my life I was fond of programming. Lately, Ive decided to take it up professionally.
               </p>
               <p>
                 I also enjoy running. I believe that it is impossible to work productively and think
@@ -76,7 +75,7 @@ export const About: React.FC = () => {
             </Typography>
             <ul>
               {skils.frontend.map((item, i) => (
-                <a key={i} href={item.url} rel="noopener noreferrer">
+                <a key={i} href={item.url} rel="noopener noreferrer" target="_blank">
                   <li>
                     <img src={item.img} alt={item.name} />
                     {item.name}

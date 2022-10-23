@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Alert, Button, Typography } from "@mui/material";
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
 import { useForm, FormProvider } from "react-hook-form";
@@ -29,13 +29,14 @@ export const Login: React.FC<LoginProps> = ({ setFormTypeMain, setFormTypeRegist
       const data = await Api().user.login(dto);
 
       setCookie(null, "token", data.token, {
-        maxAge: 30 * 24 * 60 * 60, 
+        maxAge: 30 * 24 * 60 * 60,
         path: "/",
       });
       setErrorMessage("");
       dispatch(setUserData(data));
+      setFormTypeMain();
     } catch (error: any) {
-      console.warn("Ошибка при регистрации", error);
+      console.warn("Ошибка при входе", error);
 
       setErrorMessage(error.response.data.message);
     }

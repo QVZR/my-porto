@@ -1,7 +1,7 @@
 export type UserLoginDto = {
   email: string;
-  password: string;
-  createdAt: string;
+  password?: string;
+  createdAt?: string;
 };
 export type CreateUserDto = {
   fullName: string;

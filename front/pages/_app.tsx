@@ -5,8 +5,8 @@ import "macro-css";
 import { setUserData } from "../redux/slices/user";
 import { wrapper } from "../redux/store";
 import { Api } from "../utils/api";
-import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -21,11 +21,13 @@ function App({ Component, pageProps }: AppProps) {
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
           rel="stylesheet"
         />
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
       </Head>
 
       <CssBaseline />
-
-      <Component {...pageProps} />
+      <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID as string}>
+        <Component {...pageProps} />
+      </GoogleOAuthProvider>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Login } from "@mui/icons-material";
+import {  Login } from "@mui/icons-material";
 import { Avatar, Button, List, ListItem, ListItemButton, Paper, TextField } from "@mui/material";
 import Link from "next/link";
 
@@ -11,6 +11,7 @@ import { logout, selectUserData } from "../../redux/slices/user";
 import { Api } from "../../utils/api";
 import { PostProps } from "../../utils/api/types";
 import { useDispatch } from "react-redux";
+
 
 const menu = [
   { text: "about", path: "/" },
@@ -68,8 +69,6 @@ export const Header: React.FC = () => {
       dispatch(logout());
     }
   };
-
-  console.log(router.asPath);
 
   return (
     <div className={styles.header}>
@@ -150,7 +149,7 @@ export const Header: React.FC = () => {
               variant="rounded"
               alt="Avatar"
             >
-              {userData.fullName.slice(0, 1)}
+              {userData?.fullName.slice(0, 1)}
             </Avatar>
             {exit && (
               <Button

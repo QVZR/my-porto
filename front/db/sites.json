@@ -70,7 +70,7 @@
         "Fake-json server for database"
       ]
     },
-    "url": "http://94.154.11.102:3000/"
+    "url": "http://94.154.11.102:3002/"
   },
   {
     "name": "CJournal",

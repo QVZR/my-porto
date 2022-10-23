@@ -91,13 +91,12 @@ export const Comment: React.FC<CommentPostProps> = ({
       </a>
       <Typography className={styles.text}>{text}</Typography>
       <div className={styles.buttonMenu}>
-        <Button onClick={onClickAnswer} className={styles.button}>
-          Ответить
-        </Button>
-
         {user.id === currentUserId && (
           <>
             {" "}
+            <Button onClick={onClickAnswer} className={styles.button}>
+              Ответить
+            </Button>
             <Button className={(styles.button, styles.buttonDots)} onClick={handleClick}>
               <MoreHorizOutlined />
             </Button>

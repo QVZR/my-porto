@@ -52,8 +52,8 @@ export const AuthDialog: React.FC<AuthDialogPops> = ({ onClose, open }) => {
 
       <CloseRounded
         onClick={() => {
-          onClose();
           setFormType("main");
+          onClose();
         }}
         className={styles.close}
       />
