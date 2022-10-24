@@ -6,7 +6,7 @@ export type UserLoginDto = {
 export type CreateUserDto = {
   fullName: string;
   email: string;
-  password: string;
+  password?: string;
 };
 
 export type ResponseUser = {

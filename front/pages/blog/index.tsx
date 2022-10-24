@@ -1,6 +1,5 @@
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import Post from "../../components/Post";
-import { useRouter } from "next/router";
 import { MainLayout } from "../../layouts/MainLayout";
 import styles from "./Blog.module.scss";
 import { Button, Paper } from "@mui/material";
@@ -10,13 +9,16 @@ import { Api } from "../../utils/api";
 import { PostProps } from "../../utils/api/types";
 import { useSelector } from "react-redux";
 import { isAuthSelector } from "../../redux/slices/user";
+import { useSession } from "next-auth/react";
 
 interface HomeProps {
   posts: PostProps[];
 }
 
 const Works: NextPage<HomeProps> = ({ posts }) => {
-  const isAuth = useSelector(isAuthSelector);
+  const { data: session } = useSession();
+
+  const isAuth = useSelector(isAuthSelector) || session;
 
   return (
     <div className={styles.wrapper}>

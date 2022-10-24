@@ -1,5 +1,5 @@
 import "../styles/globals.scss";
-import type { AppProps } from "next/app";
+// import type { AppProps } from "next/app";
 import Head from "next/head";
 import "macro-css";
 import { setUserData } from "../redux/slices/user";
@@ -7,8 +7,14 @@ import { wrapper } from "../redux/store";
 import { Api } from "../utils/api";
 import { CssBaseline } from "@mui/material";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { NextComponentType } from "next";
 
-function App({ Component, pageProps }: AppProps) {
+interface AppProps {
+  Component: NextComponentType;
+  pageProps: any;
+}
+
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <>
       <Head>
@@ -25,7 +31,7 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <CssBaseline />
-      <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID as string}>
+      <GoogleOAuthProvider clientId="328752187322-52a61uq1d8s8mv7nng3mgv2uca4aeh37.apps.googleusercontent.com">
         <Component {...pageProps} />
       </GoogleOAuthProvider>
     </>

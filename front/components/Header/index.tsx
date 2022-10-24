@@ -1,4 +1,4 @@
-import {  Login } from "@mui/icons-material";
+import { Login } from "@mui/icons-material";
 import { Avatar, Button, List, ListItem, ListItemButton, Paper, TextField } from "@mui/material";
 import Link from "next/link";
 
@@ -28,6 +28,8 @@ export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [posts, setPosts] = useState<PostProps[]>([]);
   const [exit, setExit] = useState(false);
+ 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -69,6 +71,8 @@ export const Header: React.FC = () => {
       dispatch(logout());
     }
   };
+
+
 
   return (
     <div className={styles.header}>
