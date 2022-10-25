@@ -9,16 +9,13 @@ import { Api } from "../../utils/api";
 import { PostProps } from "../../utils/api/types";
 import { useSelector } from "react-redux";
 import { isAuthSelector } from "../../redux/slices/user";
-import { useSession } from "next-auth/react";
 
 interface HomeProps {
   posts: PostProps[];
 }
 
 const Works: NextPage<HomeProps> = ({ posts }) => {
-  const { data: session } = useSession();
-
-  const isAuth = useSelector(isAuthSelector) || session;
+  const isAuth = useSelector(isAuthSelector);
 
   return (
     <div className={styles.wrapper}>

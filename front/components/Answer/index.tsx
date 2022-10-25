@@ -14,7 +14,6 @@ export interface AnswerPostProps {
   user: ResponseUser;
   currentUserId: number | undefined;
   onRemove: (id: number) => void;
-
 }
 
 export const Answer: React.FC<AnswerPostProps> = ({
@@ -24,7 +23,6 @@ export const Answer: React.FC<AnswerPostProps> = ({
   currentUserId,
   onRemove,
   id,
-
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<any>(null);
 
@@ -37,13 +35,13 @@ export const Answer: React.FC<AnswerPostProps> = ({
   };
 
   const handleClickRemove = async () => {
-    if (window.confirm("Удалить ответ на  комментарий?")) {
+    if (window.confirm("Delete reply to comment?")) {
       try {
         await Api().answer.remove(id);
         onRemove(id);
       } catch (err) {
         console.warn("Error remove answer", err);
-        alert("Не удалось удалить ответ на комментарий");
+        alert("Failed to delete reply to comment");
       } finally {
         handleClose();
       }
@@ -79,7 +77,7 @@ export const Answer: React.FC<AnswerPostProps> = ({
               onClose={handleClose}
               keepMounted
             >
-              <MenuItem onClick={handleClickRemove}>Удалить</MenuItem>
+              <MenuItem onClick={handleClickRemove}>Delete</MenuItem>
             </Menu>
           </>
         )}

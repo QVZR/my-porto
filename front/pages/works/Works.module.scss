@@ -31,11 +31,11 @@
   }
 
   &:nth-child(odd) {
-    border-right: 2px solid rgba(18, 18, 18, 0.6);
-    border-bottom: 2px solid rgba(18, 18, 18, 0.6);
+    border-right: 2px solid rgba(18, 18, 18, 0.6) !important;
+    border-bottom: 2px solid rgba(18, 18, 18, 0.6) !important;
   }
   &:nth-child(even) {
-    border-bottom: 2px solid rgba(18, 18, 18, 0.6);
+    border-bottom: 2px solid rgba(18, 18, 18, 0.6) !important;
   }
   &:nth-last-child(1),
   &:nth-last-child(2),
@@ -73,8 +73,8 @@
   width: 100%;
   height: 300px;
   position: absolute;
-  background: rgb(0, 0, 0, 0.85);
-  color: #fff;
+  background: rgb(0, 0, 0, 0.85) !important;
+  color: #fff !important;
   padding: 10px;
   transition: all 0.2s linear;
   &:hover {
@@ -124,9 +124,9 @@
   margin-top: 30px;
   padding: 15px;
   background: $bgHeader;
-  color: #fff;
+  color: #fff !important;
   a {
     color: blue;
-    border-bottom: 2px blue solid;
+    border-bottom: 2px blue solid !important;
   }
 }

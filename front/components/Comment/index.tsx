@@ -56,13 +56,13 @@ export const Comment: React.FC<CommentPostProps> = ({
   };
 
   const handleClickRemove = async () => {
-    if (window.confirm("Удалить комментарий?")) {
+    if (window.confirm("Delete comment?")) {
       try {
         await Api().comment.remove(id);
         onRemove(id);
       } catch (err) {
         console.warn("Error remove comment", err);
-        alert("Не удалось удалить комментарий");
+        alert("Failed to delete comment");
       } finally {
         handleClose();
       }
@@ -95,7 +95,7 @@ export const Comment: React.FC<CommentPostProps> = ({
           <>
             {" "}
             <Button onClick={onClickAnswer} className={styles.button}>
-              Ответить
+              Write back
             </Button>
             <Button className={(styles.button, styles.buttonDots)} onClick={handleClick}>
               <MoreHorizOutlined />
@@ -107,7 +107,7 @@ export const Comment: React.FC<CommentPostProps> = ({
               onClose={handleClose}
               keepMounted
             >
-              <MenuItem onClick={handleClickRemove}>Удалить</MenuItem>
+              <MenuItem onClick={handleClickRemove}>Delete</MenuItem>
             </Menu>
           </>
         )}

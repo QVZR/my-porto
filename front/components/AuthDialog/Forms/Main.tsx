@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Alert, Button, Typography } from "@mui/material";
 import { MailOutlineRounded } from "@mui/icons-material";
 import { useGoogleLogin } from "@react-oauth/google";
 // import jwt_decode from "jwt-decode";
@@ -17,6 +17,7 @@ interface MainProps {
 
 export const Main: React.FC<MainProps> = ({ setFormTypeLogin, setFormTypeRegistr }) => {
   const dispatch = useAppDispatch();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const login = useGoogleLogin({
     onSuccess: async (respose) => {
@@ -27,10 +28,9 @@ export const Main: React.FC<MainProps> = ({ setFormTypeLogin, setFormTypeRegistr
           },
         });
 
-        const userData = await Api().user.registr({
-          fullName: res.data.given_name,
+        const userData = await Api().user.login({
           email: res.data.email,
-          password: Math.random().toString(36).slice(-8),
+          password: res.data.sub,
         });
 
         setCookie(null, "token", userData.token, {
@@ -39,46 +39,40 @@ export const Main: React.FC<MainProps> = ({ setFormTypeLogin, setFormTypeRegistr
         });
 
         dispatch(setUserData(userData));
+        setErrorMessage("");
+        console.log(res);
+      } catch (error: any) {
+        console.warn("Login error", error);
 
-        console.log(userData);
-      } catch (err) {
-        console.log(err);
+        setErrorMessage(error.response.data.message);
       }
     },
   });
 
-	
   return (
     <div className={styles.rightLogin}>
-      <Typography variant="h4">Вход в аккаунт</Typography>
+      <Typography variant="h4">Login</Typography>
 
       <Button onClick={setFormTypeLogin} fullWidth variant="contained">
-        <MailOutlineRounded /> Почта
+        <MailOutlineRounded /> Email
       </Button>
 
       <Button onClick={() => login()} fullWidth variant="contained">
         <img src="/img/static/google.svg" alt="Google" /> Google
       </Button>
 
-      {/* <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
-              var decoded = jwt_decode(credentialResponse.credential as string);
-              console.log(decoded);
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-            width="300px"
-            size="large"
-          /> */}
-
       <Button fullWidth variant="contained">
         <img src="/img/static/github.svg" alt="Google" /> github
       </Button>
 
+      {errorMessage && (
+        <Alert className="mb-15" severity="error">
+          {errorMessage}
+        </Alert>
+      )}
+
       <div onClick={setFormTypeRegistr} className={styles.registration}>
-        Регистрация
+        Registration
       </div>
     </div>
   );

@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
   };
 
   const onClickLogout = () => {
-    if (window.confirm("Вы действительно хотите выйти?")) {
+    if (window.confirm("Do you really want to leave?")) {
       const CookiesDelete = () => {
         const cookies = document.cookie.split(";");
         for (let i = 0; i < cookies.length; i++) {

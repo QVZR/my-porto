@@ -5,10 +5,9 @@ body {
   width: 100%;
 }
 body {
-  background: #0a1929;
+  background: #0a1929 !important;
   background-size: cover;
   height: 100%;
-
 }
 a {
   color: inherit;
@@ -31,7 +30,7 @@ a {
     background: #fff;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #182a3a;
+    background-color: #182a3a !important;
   }
 }
 button {
@@ -45,5 +44,4 @@ button {
 }
 
 #__next {
-
 }

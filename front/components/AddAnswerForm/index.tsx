@@ -52,7 +52,7 @@ export const AddAnswerForm: React.FC<AddAnswerFormProps> = ({ commentId, onAdd, 
         value={text}
         fullWidth
         multiline
-        placeholder="Написать комментарий..."
+        placeholder="Write a comment..."
       />
       {clicked && (
         <Button

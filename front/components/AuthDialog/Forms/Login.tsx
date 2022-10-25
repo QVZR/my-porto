@@ -36,7 +36,7 @@ export const Login: React.FC<LoginProps> = ({ setFormTypeMain, setFormTypeRegist
       dispatch(setUserData(data));
       setFormTypeMain();
     } catch (error: any) {
-      console.warn("Ошибка при входе", error);
+      console.warn("Login error", error);
 
       setErrorMessage(error.response.data.message);
     }
@@ -46,13 +46,13 @@ export const Login: React.FC<LoginProps> = ({ setFormTypeMain, setFormTypeRegist
     <div className={styles.rightLogin}>
       <div onClick={setFormTypeMain} className={styles.back}>
         <ArrowBackIosNewRounded />
-        <span>Назад</span>
+        <span>Back</span>
       </div>
-      <Typography variant="h5">Войти через почту</Typography>
+      <Typography variant="h5">Login via email</Typography>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField holder="Почта" name="email" />
-          <FormField holder="Пароль" name="password" />
+          <FormField holder="Email" name="email" />
+          <FormField holder="Password" name="password" />
           {errorMessage && (
             <Alert className="mb-15" severity="error">
               {errorMessage}
@@ -65,12 +65,12 @@ export const Login: React.FC<LoginProps> = ({ setFormTypeMain, setFormTypeRegist
             fullWidth
             variant="contained"
           >
-            Войти
+            Login
           </Button>
         </form>
       </FormProvider>
       <div onClick={setFormTypeRegistr} className={styles.registration}>
-        Регистрация
+        Registration
       </div>
     </div>
   );

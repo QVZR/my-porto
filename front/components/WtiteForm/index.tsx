@@ -33,7 +33,7 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
       spellChecker: false,
       maxHeight: "400px",
       autofocus: true,
-      placeholder: "Введите текст...",
+      placeholder: "Enter text...",
       status: false,
 
       autosave: {
@@ -77,7 +77,7 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
       <TextField
         classes={{ root: styles.title }}
         variant="standard"
-        placeholder="Заголовок статьи..."
+        placeholder="Post title..."
         fullWidth
         value={title}
         onChange={(e) => setTitle(e.target.value)}

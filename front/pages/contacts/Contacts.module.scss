@@ -1,8 +1,9 @@
 @import "../../styles/colors.scss";
+
 .wrapper {
   margin-top: -100px;
   padding-top: 100px;
-padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .contacts {
@@ -10,7 +11,7 @@ padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   background: $bgHeader;
-  color: #c3d1d9;
+  color: #c3d1d9 !important;
 }
 
 .map {
@@ -51,7 +52,7 @@ padding-bottom: 10px;
   flex: 65%;
   width: 100%;
   h5 {
-    margin-bottom: 15px;
+    margin-bottom: 15px !important;
   }
   form {
     position: relative;
@@ -61,40 +62,40 @@ padding-bottom: 10px;
   }
 
   button {
-    background-color: #182a3a;
+    background-color: #182a3a !important;
     width: 100%;
     padding: 8px;
     text-transform: uppercase;
     font-size: 16px;
     letter-spacing: 2px;
     &:hover {
-      background-color: rgba(227, 50, 65, 1);
+      background-color: rgba(227, 50, 65, 1) !important;
     }
 
     &:disabled {
-      background-color: #acc3d7ee;
+      background-color: #acc3d7ee !important;
       cursor: wait;
     }
   }
 }
 
 .formItem {
-  display: flex;
+  display: flex !important;
 }
 
 .formLeft {
-  flex: 35%;
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
+  flex: 35% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  margin-right: 20px !important;
 }
 .formRight {
   flex: 65%;
 }
 .mail {
-  border-radius: 0;
+  border-radius: 0 !important;
   background-color: rgb(255, 255, 255, 0.7) !important;
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
   input {
     padding: 8px !important;
   }

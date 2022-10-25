@@ -36,7 +36,7 @@ export const FullPost: React.FC<FullPostProps> = ({
   const commentData = useAppSelector(selectCommentsData);
 
   const onClickRemove = async () => {
-    if (window.confirm("Вы действительно хотите удалить статью?")) {
+    if (window.confirm("Are you sure you want to delete the article?")) {
       // dispatch(fetchRemovePost(id));
       await Api().post.remove(id);
       router.push("/blog/");

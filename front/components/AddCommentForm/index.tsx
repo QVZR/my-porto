@@ -46,7 +46,7 @@ export const AddCommentForm: React.FC<AddCommentFormProps> = ({ postId, onAdd })
         value={text}
         fullWidth
         multiline
-        placeholder="Написать комментарий..."
+        placeholder="Write a comment..."
       />
       {clicked && (
         <Button

@@ -111,7 +111,7 @@ export const PostComments: React.FC<PostCommentProps> = ({ postId, commentCount 
             ))
             .reverse())
       ) : (
-        <div className="pb-30 text-center">Пока нет комментариев, напиши первым ...</div>
+        <div className="pb-30 text-center">No comments yet, write first ...</div>
       )}
     </Paper>
   );
