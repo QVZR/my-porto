@@ -96,7 +96,6 @@ export const Registr: React.FC<RegistrProps> = ({ setFormTypeLogin, setFormTypeM
       setErrorMessage("");
       dispatch(setUserData(data));
       setFormTypeMain();
-      console.log(data);
     } catch (error: any) {
       console.warn("Registration error", error);
 

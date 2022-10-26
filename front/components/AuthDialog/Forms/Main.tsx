@@ -10,6 +10,11 @@ import { setCookie } from "nookies";
 import { useAppDispatch } from "../../../redux/hooks";
 import { setUserData } from "../../../redux/slices/user";
 import LoginGithub from "react-login-github";
+import dynamic from "next/dynamic";
+
+const LoginGithub = dynamic(() => import("react-login-github"), {
+  ssr: false,
+}) as LoginGithub;
 
 interface MainProps {
   setFormTypeLogin: () => void;
@@ -49,11 +54,11 @@ export const Main: React.FC<MainProps> = ({ setFormTypeLogin, setFormTypeRegistr
     },
   });
 
-// ====================================================================================================================================
+  // =================================================================================
 
   const onSuccess = async (response: any) => {
     try {
-      const data = await Api().user.registrGitHub(response);
+      const data = await Api().user.loginGitHub(response);
 
       setCookie(null, "token", data.token, {
         maxAge: 30 * 24 * 60 * 60,
@@ -62,10 +67,8 @@ export const Main: React.FC<MainProps> = ({ setFormTypeLogin, setFormTypeRegistr
       setErrorMessage("");
       dispatch(setUserData(data));
 
-      console.log(data);
     } catch (error: any) {
       console.warn("Registration error", error);
-
       setErrorMessage(error.response.data.message);
     }
   };

@@ -22,6 +22,13 @@ export const UserApi = (instance: AxiosInstance) => ({
     );
     return data;
   },
+  async loginGitHub(dto: CreateGitHubUserDto): Promise<ResponseUser> {
+    const { data } = await instance.post<UserLoginDto, { data: ResponseUser }>(
+      "/auth/loginGitHub",
+      dto
+    );
+    return data;
+  },
 
   async login(dto: UserLoginDto): Promise<ResponseUser> {
     const { data } = await instance.post<UserLoginDto, { data: ResponseUser }>("/auth/login", dto);
