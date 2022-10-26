@@ -9,6 +9,7 @@ import { Api } from "../../../utils/api";
 import { setCookie } from "nookies";
 import { useAppDispatch } from "../../../redux/hooks";
 import { setUserData } from "../../../redux/slices/user";
+import LoginGithub from "react-login-github";
 
 interface MainProps {
   setFormTypeLogin: () => void;
@@ -40,7 +41,6 @@ export const Main: React.FC<MainProps> = ({ setFormTypeLogin, setFormTypeRegistr
 
         dispatch(setUserData(userData));
         setErrorMessage("");
-        console.log(res);
       } catch (error: any) {
         console.warn("Login error", error);
 
@@ -48,6 +48,28 @@ export const Main: React.FC<MainProps> = ({ setFormTypeLogin, setFormTypeRegistr
       }
     },
   });
+
+// ====================================================================================================================================
+
+  const onSuccess = async (response: any) => {
+    try {
+      const data = await Api().user.registrGitHub(response);
+
+      setCookie(null, "token", data.token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
+      setErrorMessage("");
+      dispatch(setUserData(data));
+
+      console.log(data);
+    } catch (error: any) {
+      console.warn("Registration error", error);
+
+      setErrorMessage(error.response.data.message);
+    }
+  };
+  const onFailure = (response: any) => console.error(response);
 
   return (
     <div className={styles.rightLogin}>
@@ -61,9 +83,16 @@ export const Main: React.FC<MainProps> = ({ setFormTypeLogin, setFormTypeRegistr
         <img src="/img/static/google.svg" alt="Google" /> Google
       </Button>
 
-      <Button fullWidth variant="contained">
-        <img src="/img/static/github.svg" alt="Google" /> github
-      </Button>
+      <LoginGithub
+        clientId={process.env.GITHUB_CLIENT_ID}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        className={styles.buttonGit}
+        scope="user"
+      >
+        <img src="/img/static/github.svg" alt="Google" />
+        github
+      </LoginGithub>
 
       {errorMessage && (
         <Alert className="mb-15" severity="error">

@@ -2705,6 +2705,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
 
+"react-login-github@^1.0.8":
+  "integrity" "sha512-Et30Hx8eV7vmqQpEma0DyYKak2RMGX7le0OC3R49vdeOfoJL4+RaTS4IeqDgWrAmyFWs9oWLamvvXbG67Mmr4A=="
+  "resolved" "https://registry.npmjs.org/react-login-github/-/react-login-github-1.0.8.tgz"
+  "version" "1.0.8"
+
 "react-markdown@^8.0.3":
   "integrity" "sha512-We36SfqaKoVNpN1QqsZwWSv/OZt5J15LNgTLWynwAN5b265hrQrsjMtlRNwUvS+YyR3yDM8HpTNc4pK9H/Gc0A=="
   "resolved" "https://registry.npmjs.org/react-markdown/-/react-markdown-8.0.3.tgz"

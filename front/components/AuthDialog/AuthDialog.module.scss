@@ -48,18 +48,23 @@
     margin-top: 50px !important;
     font-weight: 500 !important;
   }
-  button {
+  button,
+  .buttonGit {
+    color: #c3d1d9 !important;
     position: relative !important;
-    height: 48px;
-    font-size: 16px;
-    line-height: 16px;
-    letter-spacing: normal;
+    height: 48px !important;
+    width: 100% !important;
+    font-size: 16px !important;
+    line-height: 16px !important;
+    border-radius: 4px !important;
+    letter-spacing: normal !important;
+    text-transform: uppercase !important;
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%), inset 0 0 0 1px rgb(0 0 0 / 6%),
       inset 0 -1px 0 rgb(0 0 0 / 12%), inset 1px 0 0 rgb(0 0 0 / 6%), inset -1px 0 0 rgb(0 0 0 / 6%) !important;
-    margin-bottom: 16px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 16px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
     background-color: #182a3a !important;
 
     transition: all 0.15s ease-in-out;
@@ -75,29 +80,21 @@
       }
     }
     img {
-      height: 21px;
-      width: 21px;
+      height: 21px !important;
+      width: 21px !important;
       position: absolute !important;
-      left: 13px;
-      border-radius: 5px;
+      left: 13px !important;
+      border-radius: 5px !important;
     }
     svg {
       position: absolute !important;
       left: 12px;
     }
   }
-  .buttonFutter {
-    display: flex;
-    button {
-      margin-bottom: 14px !important;
-      width: 103px;
-      margin-right: 10px !important;
-      &:last-child {
-        margin-right: 0;
-      }
-      img {
-        position: static !important;
-      }
+  .buttonGit {
+    img {
+      bottom: 13px !important;
+			
     }
   }
 }

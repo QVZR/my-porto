@@ -27,11 +27,10 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
           rel="stylesheet"
         />
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
       </Head>
 
       <CssBaseline />
-      <GoogleOAuthProvider clientId="328752187322-52a61uq1d8s8mv7nng3mgv2uca4aeh37.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID as string}>
         <Component {...pageProps} />
       </GoogleOAuthProvider>
     </>

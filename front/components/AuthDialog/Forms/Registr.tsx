@@ -4,9 +4,13 @@ import { Alert, Button, Typography } from "@mui/material";
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { FormField } from "../../FormField";
 import { RegistrSchema } from "../../../utils/validations";
+import LoginGithub from "react-login-github";
+
+const LoginGithub = dynamic(() => import("react-login-github"), {
+  ssr: false,
+}) as LoginGithub;
 
 import styles from "../AuthDialog.module.scss";
 import { Api } from "../../../utils/api";
@@ -14,6 +18,7 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { setUserData } from "../../../redux/slices/user";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import dynamic from "next/dynamic";
 
 interface RegistrProps {
   setFormTypeLogin: () => void;
@@ -21,6 +26,8 @@ interface RegistrProps {
 }
 
 export const Registr: React.FC<RegistrProps> = ({ setFormTypeLogin, setFormTypeMain }) => {
+  const [data, setData] = useState();
+
   const dispatch = useAppDispatch();
 
   const form = useForm({ resolver: yupResolver(RegistrSchema), mode: "onChange" });
@@ -44,7 +51,7 @@ export const Registr: React.FC<RegistrProps> = ({ setFormTypeLogin, setFormTypeM
     }
   };
 
-  const registr = useGoogleLogin({
+  const registrGoogle = useGoogleLogin({
     onSuccess: async (respose) => {
       try {
         const res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
@@ -76,6 +83,28 @@ export const Registr: React.FC<RegistrProps> = ({ setFormTypeLogin, setFormTypeM
     },
   });
 
+  // ==================================================================================
+
+  const onSuccess = async (response: any) => {
+    try {
+      const data = await Api().user.registrGitHub(response);
+
+      setCookie(null, "token", data.token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
+      setErrorMessage("");
+      dispatch(setUserData(data));
+      setFormTypeMain();
+      console.log(data);
+    } catch (error: any) {
+      console.warn("Registration error", error);
+
+      setErrorMessage(error.response.data.message);
+    }
+  };
+  const onFailure = (response: any) => console.error(response);
+
   return (
     <div className={styles.rightLogin}>
       <div onClick={setFormTypeMain} className={styles.back}>
@@ -104,13 +133,24 @@ export const Registr: React.FC<RegistrProps> = ({ setFormTypeLogin, setFormTypeM
           </Button>
         </form>
       </FormProvider>
-      <Button onClick={() => registr()} fullWidth variant="contained">
+      <Button onClick={() => registrGoogle()} fullWidth variant="contained">
         <img src="/img/static/google.svg" alt="Google" /> Google
       </Button>
-
-      <Button fullWidth variant="contained">
+      {/* <Button fullWidth variant="contained">
         <img src="/img/static/github.svg" alt="Google" /> github
-      </Button>
+      </Button> */}
+
+      <LoginGithub
+        clientId={process.env.GITHUB_CLIENT_ID}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        className={styles.buttonGit}
+        scope="user"
+      >
+        <img src="/img/static/github.svg" alt="Google" />
+        github
+      </LoginGithub>
+
       <div className="d-flex align-center">
         <div className="mr-5">Have an account?</div>
         <div onClick={setFormTypeLogin} className={styles.registration}>

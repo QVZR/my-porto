@@ -1,4 +1,4 @@
-import { CreateUserDto, ResponseUser, UserLoginDto } from "./types";
+import { CreateGitHubUserDto, CreateUserDto, ResponseUser, UserLoginDto } from "./types";
 import { AxiosInstance } from "axios";
 
 export const UserApi = (instance: AxiosInstance) => ({
@@ -10,6 +10,14 @@ export const UserApi = (instance: AxiosInstance) => ({
   async registr(dto: CreateUserDto): Promise<ResponseUser> {
     const { data } = await instance.post<CreateUserDto, { data: ResponseUser }>(
       "/auth/registr",
+      dto
+    );
+    return data;
+  },
+
+  async registrGitHub(dto: CreateGitHubUserDto): Promise<ResponseUser> {
+    const { data } = await instance.post<CreateGitHubUserDto, { data: ResponseUser }>(
+      "/auth/registrGitHub",
       dto
     );
     return data;

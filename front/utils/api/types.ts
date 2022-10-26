@@ -8,6 +8,9 @@ export type CreateUserDto = {
   email: string;
   password?: string;
 };
+export type CreateGitHubUserDto = {
+  code: string;
+};
 
 export type ResponseUser = {
   createdAt: string;

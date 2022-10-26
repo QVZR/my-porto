@@ -12,7 +12,6 @@ import { Api } from "../../utils/api";
 import { PostProps } from "../../utils/api/types";
 import { useDispatch } from "react-redux";
 
-
 const menu = [
   { text: "about", path: "/" },
   { text: "works", path: "/works" },
@@ -28,7 +27,6 @@ export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [posts, setPosts] = useState<PostProps[]>([]);
   const [exit, setExit] = useState(false);
- 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -71,8 +69,6 @@ export const Header: React.FC = () => {
       dispatch(logout());
     }
   };
-
-
 
   return (
     <div className={styles.header}>
@@ -153,7 +149,7 @@ export const Header: React.FC = () => {
               variant="rounded"
               alt="Avatar"
             >
-              {userData?.fullName.slice(0, 1)}
+              {userData?.fullName.slice(0, 1).toUpperCase()}
             </Avatar>
             {exit && (
               <Button
