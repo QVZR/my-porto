@@ -52,7 +52,7 @@
 }
 
 .button {
-  width: 40px;
+  width: 105px;
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -63,13 +63,15 @@
 }
 
 .buttonDots {
-  margin: 0;
-  padding: 0;
-  margin-top: 7px;
+  min-width: 40px !important;
+  width: 40px !important;
+  margin: 0 !important;
+  padding: 0 !important;
   opacity: 0.5;
-  left: -7px;
+  left: -7px !important;
 }
 
 .buttonMenu {
-  margin-bottom: 15px;
+  margin-bottom: 10px !important;
+  margin-top: 3px !important;
 }

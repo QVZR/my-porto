@@ -1,27 +1,28 @@
 .form {
-  position: relative;
+  position: relative !important;
   margin-bottom: 22px !important;
+  margin-top: 22px !important;
   height: 100%;
 }
 
 .textarea {
   cursor: default;
   display: flex;
-  margin: 20px auto;
+  margin: 0 auto !important;
   width: 100%;
   font-size: inherit;
-  background-color: #f7f7f7;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  padding: 12px 11px 11px;
+  background-color: #f7f7f7 !important;
+  border: 1px solid rgba(0, 0, 0, 0.03) !important;
+  padding: 12px 11px 11px !important;
   border-radius: 10px;
 
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: #fff;
-    border-color: #bdd6fa;
+    background-color: #fff !important;
+    border-color: #bdd6fa !important;
     box-shadow: 0 0 0 3px rgb(70 131 217 / 12%) !important;
-    padding: 12px 11px 11px;
+    padding: 12px 11px 11px !important;
   }
 
   &::after,
@@ -31,9 +32,9 @@
 }
 
 .button {
-  background-color: #182a3a;
+  background-color: #182a3a !important;
 
-  padding: 10px 20px;
+  padding: 10px 20px !important;
 
   text-transform: uppercase;
   font-size: 16px;
@@ -42,19 +43,19 @@
   color: #c3d1d9 !important;
   align-items: center;
   &:hover {
-    background-color: rgba(227, 50, 65, 1);
+    background-color: rgba(227, 50, 65, 1) !important;
   }
 
   &:disabled {
-    background-color: #acc3d7ee;
+    background-color: #acc3d7ee !important;
     cursor: wait;
   }
 
   svg {
-    fill: #c3d1d9;
-    margin-right: 7px;
+    fill: #c3d1d9 !important;
+    margin-right: 7px !important;
   }
-  position: absolute;
+  position: absolute !important;
   right: 15px;
   bottom: 12px;
 }

@@ -5,7 +5,7 @@
 
   p {
     color: #000;
-    margin-bottom: 13px;
+    margin-bottom: 13px !important;
     font-size: 17px;
     word-wrap: break-word;
   }
@@ -13,32 +13,32 @@
 .title {
   font-size: 22px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
   color: #000;
 }
 .userInfo {
   display: flex;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 30px !important;
   flex-wrap: wrap;
 
   justify-content: space-between;
   img {
     height: 40px;
     width: 40px;
-    border-radius: 8px;
+    border-radius: 8px !important;
   }
   b {
     font-size: 18px;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
     font-weight: 500;
     color: #000;
   }
 }
 
 .subscribe {
-  background-color: #182a3a;
+  background-color: #182a3a !important;
   padding: 5px 15px !important;
   height: 35px !important;
   font-size: 16px;
@@ -49,18 +49,18 @@
   }
 
   &:disabled {
-    background-color: #acc3d7ee;
+    background-color: #acc3d7ee !important;
     cursor: wait;
   }
 
   svg {
     fill: #c3d1d9;
-    margin-right: 10px;
+    margin-right: 10px !important;
   }
 }
 
 .editButtons {
-  position: absolute;
+  position: absolute !important;
   right: 25px;
   top: 20px;
   button {
@@ -70,7 +70,7 @@
   }
   svg {
     &:hover {
-      fill: rgba(227, 50, 65, 1);
+      fill: rgba(227, 50, 65, 1) !important;
     }
   }
 }
