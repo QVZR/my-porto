@@ -1,8 +1,10 @@
 .slugRow {
   max-width: 640px;
-  width: 100%;
-
   margin: 25px auto;
+  margin-right: 10px;
+  @media (max-width: 500px) {
+    margin-top: 0;
+  }
 }
 .headerPenButton {
   background-color: #182a3a !important;
@@ -38,5 +40,10 @@
     svg {
       transform: rotate(270deg) !important;
     }
+  }
+  @media (max-width: 500px) {
+    top: 105px !important;
+    left: -25px !important;
+    height: 44px !important;
   }
 }

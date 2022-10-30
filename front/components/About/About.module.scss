@@ -20,6 +20,9 @@
     height: 60px;
     margin: 0px 0 10px 0;
   }
+  @media (max-width: 500px) {
+    height: 40px;
+  }
 }
 .bottom {
   display: flex;
@@ -76,6 +79,17 @@
   @media (max-width: 840px) {
     margin-bottom: 10px;
   }
+  @media (max-width: 500px) {
+    padding: 10px;
+    .title {
+      font-size: 20px;
+    }
+    p {
+      font-size: 15px;
+      text-align: justify;
+      line-height: 25px;
+    }
+  }
 }
 .hardSkils {
   height: 80px;
@@ -93,11 +107,18 @@
       display: none;
     }
   }
-	 @media (max-width: 840px) {
+  @media (max-width: 840px) {
     img {
-			height: 30px !important;
-			width: 30px !important;
-		}
+      height: 30px !important;
+      width: 30px !important;
+    }
+  }
+  @media (max-width: 500px) {
+    height: 40px;
+    img {
+      height: 20px !important;
+      width: 20px !important;
+    }
   }
 }
 
@@ -133,6 +154,26 @@
         margin: 10px;
         margin-right: 30px;
       }
+    }
+  }
+  @media (max-width: 500px) {
+    padding: 10px;
+    .title {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    ul {
+      margin-left: 0px;
+      li {
+        margin: 5px;
+        margin-right: 10px;
+        font-size: 13px;
+      }
+    }
+    img {
+      margin-right: 5px;
+      height: 25px !important;
+      width: 25px !important;
     }
   }
 }

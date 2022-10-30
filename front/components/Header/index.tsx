@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import styles from "./header.module.scss";
 import { useRouter } from "next/router";
-import { ChangeEventHandler, useEffect, useState } from "react";
+import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { AuthDialog } from "../AuthDialog";
 import { useAppSelector } from "../../redux/hooks";
 import { logout, selectUserData } from "../../redux/slices/user";
@@ -20,6 +20,7 @@ const menu = [
 ];
 
 export const Header: React.FC = () => {
+  const refElement = useRef(null);
   const dispatch = useDispatch();
   const userData = useAppSelector(selectUserData);
   const [searchValue, setSearchValue] = useState("");
@@ -72,12 +73,19 @@ export const Header: React.FC = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", () => setOpenBurger(window.innerHeight < 740));
-    return window.removeEventListener("resize", () => {});
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 740) {
+        setOpenBurger(window.innerWidth > 740);
+      }
+      // console.log(window.innerWidth);
+    });
   }, []);
 
   return (
-    <div className={openBurger ? styles.header : `${styles.header} ${styles.headerVh}`}>
+    <div
+      ref={refElement}
+      className={openBurger ? styles.header : `${styles.header} ${styles.headerVh}`}
+    >
       <button
         onClick={() => {
           setOpenBurger(!openBurger);
@@ -258,6 +266,32 @@ export const Header: React.FC = () => {
             )}
           </div>
         )}
+        {openBurger &&
+          (userData ? (
+            <>
+              <Avatar
+                onClick={() => setExit(!exit)}
+                className={`${styles.headerAvatar} ${styles.visible}`}
+                variant="rounded"
+                alt="Avatar"
+              >
+                {userData?.fullName.slice(0, 1).toUpperCase()}
+              </Avatar>
+              {exit && (
+                <Button
+                  onClick={() => {
+                    onClickLogout();
+                  }}
+                  className={styles.exitButton}
+                  variant="contained"
+                >
+                  logout
+                </Button>
+              )}
+            </>
+          ) : (
+            <Login onClick={handleClickOpen} className={`${styles.login} ${styles.visible}`} />
+          ))}
       </>
     </div>
   );

@@ -32,11 +32,17 @@
   }
 
   @media (max-width: 980px) {
-    width: 110px;
-    font-size: 14px !important;
+    transform: rotate(90deg) !important;
+    top: 125px !important;
+    left: -5px !important;
+
     svg {
-      width: 20px;
+      transform: rotate(270deg) !important;
     }
+  }
+  @media (max-width: 500px) {
+    top: 116px !important;
+    left: -35px !important;
   }
 }
 
@@ -54,5 +60,20 @@
   @media (max-width: 1310px) {
     width: 110px;
     font-size: 12px !important;
+  }
+  @media (max-width: 980px) {
+    width: 80px;
+    word-wrap: break-word;
+    text-align: center;
+    align-items: center;
+    top: 230px;
+    left: 20px;
+    padding: 2px;
+  }
+  @media (max-width: 500px) {
+    width: 44px;
+    top: 215px;
+    left: 9px;
+    padding: 2px;
   }
 }

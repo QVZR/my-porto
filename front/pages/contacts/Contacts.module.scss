@@ -12,6 +12,9 @@
   flex-direction: column;
   background: $bgHeader;
   color: #c3d1d9 !important;
+  @media (max-width: 500px) {
+    margin-top: 15px !important;
+  }
 }
 
 .map {
@@ -22,7 +25,7 @@
     width: 100%;
   }
   @media (max-width: 910px) {
-		padding: 15px;
+    padding: 15px;
     iframe {
       height: 300px;
     }
@@ -42,6 +45,13 @@
       font-size: 14px;
     }
   }
+  @media (max-width: 740px) {
+    margin-top: 10px;
+  }
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .infoText {
@@ -49,13 +59,42 @@
   h5 {
     margin-bottom: 15px;
   }
+  @media (max-width: 500px) {
+    h5 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    p {
+      font-size: 13px !important;
+    }
+    margin-bottom: 10px;
+  }
 }
 .adress {
   margin-bottom: 40px;
+  @media (max-width: 740px) {
+    p {
+      font-size: 14px;
+      word-wrap: break-word;
+    }
+  }
+  @media (max-width: 500px) {
+    margin-bottom: 10px;
+  }
 }
 .social {
   li {
     margin-bottom: 10px;
+  }
+  @media (max-width: 740px) {
+    li {
+      font-size: 12px !important;
+      word-wrap: break-word;
+      a {
+        font-size: 12px !important;
+        word-wrap: break-word;
+      }
+    }
   }
 }
 
@@ -88,10 +127,20 @@
       cursor: wait;
     }
   }
+  @media (max-width: 500px) {
+    h5 {
+      margin-bottom: 10px !important;
+      font-size: 16px !important;
+    }
+  }
 }
 
 .formItem {
   display: flex !important;
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .formLeft {
@@ -99,6 +148,9 @@
   display: flex !important;
   flex-direction: column !important;
   margin-right: 20px !important;
+  @media (max-width: 500px) {
+    margin-right: 0 !important;
+  }
 }
 .formRight {
   flex: 65%;

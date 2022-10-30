@@ -59,7 +59,7 @@ export const PostComments: React.FC<PostCommentProps> = ({ postId, commentCount 
       <Typography variant="h6"> {comments.length || commentCount} comments</Typography>
       <Tabs
         onChange={(_, newValue) => setActiveTab(newValue)}
-        className="mt-20"
+        className={styles.tabs}
         value={activeTab}
         indicatorColor="primary"
         textColor="primary"

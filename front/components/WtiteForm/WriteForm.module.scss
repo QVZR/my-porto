@@ -1,10 +1,20 @@
 .wrapper {
   max-width: 640px;
-  width: 100%;
+
   margin: 20px auto;
   position: relative;
   i.separator {
     display: none;
+  }
+  @media (max-width: 910px) {
+    margin: 25px 0 25px 120px;
+  }
+  @media (max-width: 840px) {
+    margin-right: 20px;
+  }
+  @media (max-width: 500px) {
+    margin: 12px 10px 25px 60px;
+    padding: 10px !important;
   }
 }
 
@@ -13,6 +23,10 @@
     font-size: 25px;
     font-weight: 900;
     color: #000 !important;
+    @media (max-width: 500px) {
+      font-size: 18px !important;
+      padding: 0 !important;
+    }
   }
   div {
     &:before,
@@ -34,6 +48,9 @@
     }
     span {
       color: #000 !important;
+      @media (max-width: 500px) {
+        font-size: 15px !important;
+      }
     }
     button {
       i::before {
@@ -44,6 +61,10 @@
       border: 0;
       background-color: rgb(0 0 0 / 2%);
       color: #000 !important;
+      @media (max-width: 500px) {
+        font-size: 15px !important;
+        padding: 0;
+      }
     }
   }
 }

@@ -1,12 +1,35 @@
 .divider {
-  margin: 0 -30px 20px;
+  margin: 0 0px 20px;
 }
 
 .commentForm {
   margin: 30px auto;
   padding: 20px;
   height: 100%;
-	h6 {
-		color: rgba(51, 50, 50, 0.752) !important;
-	}
+  h6 {
+    color: rgba(51, 50, 50, 0.752) !important;
+    @media (max-width: 500px) {
+      font-size: 15px;
+    }
+  }
+  @media (max-width: 910px) {
+    margin: 25px 0 25px 50px;
+  }
+  @media (max-width: 840px) {
+    margin-right: 10px !important;
+  }
+  @media (max-width: 500px) {
+    margin: 12px 0px 25px 60px !important;
+    padding: 10px !important;
+  }
+}
+
+.tabs {
+  margin-top: 20px !important;
+  @media (max-width: 500px) {
+    margin-top: 5px !important;
+		button {
+			font-size: 13px;
+		}
+  }
 }

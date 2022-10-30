@@ -1,5 +1,4 @@
 import { Paper, Typography } from "@mui/material";
-import Link from "next/link";
 import React from "react";
 import styles from "./About.module.scss";
 import skils from "../../db/skils.json";

@@ -8,6 +8,20 @@
     margin-bottom: 13px !important;
     font-size: 17px;
     word-wrap: break-word;
+    @media (max-width: 500px) {
+      margin: 10px 0 !important;
+      font-size: 15px !important;
+    }
+  }
+  @media (max-width: 910px) {
+    margin: 25px 0 25px 50px;
+  }
+  @media (max-width: 840px) {
+    margin-right: 10px !important;
+  }
+  @media (max-width: 500px) {
+    margin: 12px 0px 10px 60px !important;
+    padding: 10px !important;
   }
 }
 .title {
@@ -15,6 +29,10 @@
   font-weight: 500;
   margin-bottom: 20px !important;
   color: #000;
+  @media (max-width: 500px) {
+    font-size: 18px !important;
+    margin: 0 !important;
+  }
 }
 .userInfo {
   display: flex;
@@ -72,5 +90,10 @@
     &:hover {
       fill: rgba(227, 50, 65, 1) !important;
     }
+  }
+
+  @media (max-width: 500px) {
+    right: 5px;
+    top: 5px;
   }
 }
