@@ -26,7 +26,7 @@ const Slug: NextPage<SlugProps> = ({ post, user, comments }) => {
       <Link href="/blog">
         <a>
           <Button className={styles.headerPenButton} variant="contained">
-            <ArrowBackOutlined /> Back
+            <ArrowBackOutlined />Back
           </Button>
         </a>
       </Link>

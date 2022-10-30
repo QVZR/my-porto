@@ -1,8 +1,14 @@
 .post {
   max-width: 640px;
-  width: 100%;
+
   margin: 25px auto;
   position: relative;
+  @media (max-width: 910px) {
+    margin: 25px 0 25px 165px;
+  }
+  @media (max-width: 840px) {
+    margin-right: 20px;
+  }
 }
 
 .postImageRow {

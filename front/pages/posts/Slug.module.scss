@@ -29,4 +29,14 @@
     fill: #c3d1d9 !important;
     margin-right: 7px;
   }
+
+  @media (max-width: 980px) {
+    transform: rotate(90deg) !important;
+    top: 125px !important;
+    left: -5px !important;
+
+    svg {
+      transform: rotate(270deg) !important;
+    }
+  }
 }

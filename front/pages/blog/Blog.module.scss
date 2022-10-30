@@ -12,10 +12,11 @@
   padding-right: 20px !important;
   text-transform: uppercase !important;
   font-size: 16px !important;
-  letter-spacing: 2px  !important;
+  letter-spacing: 2px !important;
   top: 90px !important;
   left: 20px !important;
   color: #c3d1d9 !important;
+  line-height: 0;
   &:hover {
     background-color: rgba(227, 50, 65, 1) !important;
   }
@@ -28,6 +29,14 @@
   svg {
     fill: #c3d1d9 !important;
     margin-right: 7px !important;
+  }
+
+  @media (max-width: 980px) {
+    width: 110px;
+    font-size: 14px !important;
+    svg {
+      width: 20px;
+    }
   }
 }
 
@@ -42,4 +51,8 @@
   left: 20px;
   background-color: #acc3d7ee !important;
   width: 300px;
+  @media (max-width: 1310px) {
+    width: 110px;
+    font-size: 12px !important;
+  }
 }
