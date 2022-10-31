@@ -110,8 +110,8 @@ export const Header: React.FC = () => {
                 <a>
                   <button
                     onClick={() => {
-                      setOpenBurger(!openBurger);
-                      document.body.classList.toggle("noscroll");
+                      document.body.classList.remove("noscroll");
+                      setOpenBurger(true);
                     }}
                   >
                     {obj.text}
@@ -173,8 +173,8 @@ export const Header: React.FC = () => {
                 <a>
                   <button
                     onClick={() => {
-                      setOpenBurger(!openBurger);
-											document.body.classList.toggle("noscroll");
+                      document.body.classList.remove("noscroll");
+                      setOpenBurger(true);
                     }}
                   >
                     {obj.text}
@@ -285,7 +285,6 @@ export const Header: React.FC = () => {
                 <Button
                   onClick={() => {
                     onClickLogout();
-										
                   }}
                   className={styles.exitButton}
                   variant="contained"
@@ -298,6 +297,7 @@ export const Header: React.FC = () => {
             <Login onClick={handleClickOpen} className={`${styles.login} ${styles.visible}`} />
           ))}
       </>
+      <AuthDialog onClose={handleClose} open={open} />
     </div>
   );
 };

@@ -29,8 +29,10 @@
 }
 .bottom {
   display: flex;
-  flex-direction: column;
   width: 100%;
+  @media (max-width: 840px) {
+    flex-direction: column;
+  }
 }
 
 .left {
