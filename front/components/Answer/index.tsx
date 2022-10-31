@@ -5,7 +5,7 @@ import React, { MouseEventHandler, useState } from "react";
 import { Api } from "../../utils/api";
 import { ResponseUser } from "../../utils/api/types";
 
-import styles from "./Comment.module.scss";
+import styles from "./Answer.module.scss";
 
 export interface AnswerPostProps {
   text: string;

@@ -89,6 +89,7 @@ export const Header: React.FC = () => {
       <button
         onClick={() => {
           setOpenBurger(!openBurger);
+          document.body.classList.toggle("noscroll");
         }}
         className={openBurger ? styles.burger : `${styles.burger} ${styles.activeBurger}`}
       >
@@ -110,6 +111,7 @@ export const Header: React.FC = () => {
                   <button
                     onClick={() => {
                       setOpenBurger(!openBurger);
+                      document.body.classList.toggle("noscroll");
                     }}
                   >
                     {obj.text}
@@ -172,6 +174,7 @@ export const Header: React.FC = () => {
                   <button
                     onClick={() => {
                       setOpenBurger(!openBurger);
+											document.body.classList.toggle("noscroll");
                     }}
                   >
                     {obj.text}
@@ -221,6 +224,7 @@ export const Header: React.FC = () => {
                     <button
                       onClick={() => {
                         setOpenBurger(!openBurger);
+                        document.body.classList.toggle("noscroll");
                       }}
                     >
                       {obj.text}
@@ -281,6 +285,7 @@ export const Header: React.FC = () => {
                 <Button
                   onClick={() => {
                     onClickLogout();
+										
                   }}
                   className={styles.exitButton}
                   variant="contained"

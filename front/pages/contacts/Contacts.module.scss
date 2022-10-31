@@ -30,6 +30,12 @@
       height: 300px;
     }
   }
+  @media (max-width: 425px) {
+    padding: 10px;
+    iframe {
+      height: 200px;
+    }
+  }
 }
 
 .info {

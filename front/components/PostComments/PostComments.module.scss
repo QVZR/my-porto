@@ -1,5 +1,8 @@
 .divider {
   margin: 0 0px 20px;
+  @media (max-width: 500px) {
+    margin-bottom: 10px !important;
+  }
 }
 
 .commentForm {
@@ -28,8 +31,8 @@
   margin-top: 20px !important;
   @media (max-width: 500px) {
     margin-top: 5px !important;
-		button {
-			font-size: 13px;
-		}
+    button {
+      font-size: 13px;
+    }
   }
 }

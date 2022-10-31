@@ -3,6 +3,9 @@
   margin-bottom: 22px !important;
   margin-top: 22px !important;
   height: 100%;
+  @media (max-width: 500px) {
+    margin: 10px 0 !important;
+  }
 }
 
 .textarea {
